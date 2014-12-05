@@ -4,12 +4,12 @@
 #' 
 #' @author Michael Nelson, Sebastian Campbell
 #' 
-#' @importFrom treemap tmPlot
 #' @importFrom munsell rgb2mnsl
 #' @importFrom munsell mnsl
 #' @importFrom plyr splat
+#' @importFrom plyr adply
 #' @import ggplot2
-#' @export munsell_treemap
+#' @import treemap 
 #' 
 #' @param spectra dataframe or matrix where each row is a spectrum and each column is a wavelength
 #' @param wavelengths integer wavelengths corresponding to the columns of \code{spectra}
@@ -17,6 +17,7 @@
 #' @param numtext logical, whether or not to plot colour frequencies
 #' @param otherArgs list of additional elements to be added to ggplot2 call
 #' @param textrange vector of length two indicating minimum and maximum text size respectively
+#' @export munsell_treemap
 
 munsell_treemap <- function(spectra, wavelengths, coltext=TRUE, numtext=FALSE, otherArgs=NULL, textrange=c(3, 10)){
   treemap_data <- munsell_tm(spectra, wavelengths)
@@ -45,30 +46,27 @@ munsell_treemap <- function(spectra, wavelengths, coltext=TRUE, numtext=FALSE, o
     
   print(treemap+otherArgs)
 }
-
 munsell_tm <- function(spectra, wavelengths){
   
   spectra <- as.matrix(spectra)
   
   rgb_colours <- adply(spectra, 1L, spectra_to_RGB, all_wavelengths = wavelengths)
   munsell <- splat(function(red,green,blue, ...){rgb2mnsl(R=red, G=green, B=blue)})(rgb_colours)
-    
+  
   munsell_table <- as.data.frame(table(munsell))
   
-  library(treemap) #Otherwise it does not load
-  
   pdf(file=NULL)
-  raw_tmdata <- tmPlot(munsell_table, index="munsell", vSize="Freq")[[1L]][[1L]]
+  raw_tmdata <- treemap(munsell_table, index="munsell", vSize="Freq")[[1]][[1]]
   dev.off()
   
   ordered_munsell <- sapply(raw_tmdata[,-c(ncol(raw_tmdata)-0:3)], levels)
   names(ordered_munsell) <- NULL
   
   rect_coords <- data.frame(munsell=ordered_munsell, 
-                       raw_tmdata[,c(ncol(raw_tmdata)-3:0)])
+                            raw_tmdata[,c(ncol(raw_tmdata)-3:0)])
   rect_coords$hex <- mnsl(rect_coords$munsell)
   rect_coords <- merge(rect_coords, munsell_table)
   
   rect_coords
-
+  
 }
