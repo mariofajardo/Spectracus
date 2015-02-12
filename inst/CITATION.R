@@ -1,0 +1,14 @@
+year <- 2014
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         title = "{spectroscopy}: Functions for Visible and Near Infrared data manipulation",
+         author = c(person("Mario", "Fajardo"),
+                    person("Sebastian", "Campbell"),
+                    person("Brendan", "Malone"),
+                    person("Budiman", "Minasny"), 
+                    person("Michael", "Nelson")),
+         year = 2014,
+         note = 'note',
+         url = "https://github.com/Soilsecuritylab/spectroscopy_package")
+

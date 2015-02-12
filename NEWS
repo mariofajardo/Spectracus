@@ -1,3 +1,8 @@
+spectroscopy 0.3
+
+* Fixed chBLC bug where the hull would be truncated
+
+--------------------------------------------------------------
 spectroscopy 0.2-4
 
 * Fixed chBLC bug where the hull would be truncated
