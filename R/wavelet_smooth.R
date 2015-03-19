@@ -15,4 +15,5 @@ wavelet_smooth <-function(spectra, res){
     wave_spectra[i,]<- accessC.wd(wds, level=res)}
   colnames(wave_spectra) <- seq((404 + 0.5*(2048/(2^res))),2451, by=2048/(2^res))
   return(wave_spectra)
+  
 }
