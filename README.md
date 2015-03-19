@@ -15,5 +15,5 @@ The easiest way is to use `install_github` from `devtools`.
 
 ```r
 library(devtools)
-install_github('soilseclab/spectroscopy_package')
+install_github('Soilsecuritylab/spectroscopy_package')
 ```
