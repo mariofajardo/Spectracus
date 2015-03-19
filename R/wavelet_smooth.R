@@ -14,4 +14,5 @@ wavelet_smooth <-function(spectra, res){
     wds<-wd(as.matrix(spectra[i,]),bc="symmetric",filter.number = 10, family = 'DaubExPhase', min.scale = 2)
     wave_spectra[i,]<- accessC.wd(wds, level=res)}
   colnames(wave_spectra) <- seq((404 + 0.5*(2048/(2^res))),2451, by=2048/(2^res))
-  return(wave_spectra)}
+  return(wave_spectra)
+}
