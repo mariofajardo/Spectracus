@@ -1,7 +1,6 @@
 #' Standard Normal Variate (SNV) transformation
 #' 
 #' @param spectra a matrix or data.frame with wavelengths as columns and spectra as rows
-#' @importFrom plyr aaply
 #' @export
 
 snvBLC<- function(spectra){
