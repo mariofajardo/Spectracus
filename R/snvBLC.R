@@ -5,8 +5,7 @@
 
 snvBLC<- function(spectra){
   spectra<-as.matrix(spectra)
-  snvMat<- matrix(NA,ncol=ncol(spectra),nrow=nrow(spectra))
-  for (i in 1: nrow(spectra)){
-    snvMat[i,]<-(spectra[i,]- mean(spectra[i,]))/ sd(spectra[i,])}
-  colnames(snvMat) <- colnames(spectra)
-  return(snvMat)}
+  snvMat<-(spectra - rowMeans(spectra))/apply(spectra,1,sd)
+  attributes(snvMat) <- attributes(spectra)
+  snvMat
+}

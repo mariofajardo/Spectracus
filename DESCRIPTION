@@ -2,7 +2,7 @@ Package: spectroscopy
 Type: Package
 Title: Functions for Visible and Near Infrared data manipulation
 Version: 0.4
-Date: 2015-03-18
+Date: 2015-03-23
 Authors@R: c(person("Mario", "Fajardo", role = c("aut", "cre"),
     email="soilseclab@gmail.com"),
     person("Sebastian", "Campbell", role = c("aut")),
