@@ -1,6 +1,8 @@
 spectroscopy 0.4
 
 * Migrated from original repository
+* munsell_treemap functional again after package "treemap" update.
+* snvBLC function optimized
 
 --------------------------------------------------------------
 spectroscopy 0.3
