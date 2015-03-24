@@ -1,5 +1,5 @@
 #' Trim regular spectra
-#' 
+#' NOTE: Need to make this more general
 #' Convenience wrapper for \link{strip_spectra}, for wavelengths 350:2500
 #' 
 #' @param spectra a matrix of spectra where each row represents a spectrum and each column a wavelength
