@@ -20,9 +20,6 @@ Soil Security Laboratory, 2016. R package for soil spectroscopy. The University 
 }
 
 \examples{
-library(spectroscopy_package)
-
-
 data(soilSpecDat)
 
 #Histogram of all the clay data
