@@ -9,9 +9,11 @@ Authors@R: c(person("Mario", "Fajardo", role = c("aut", "cre"),
     person("Brendan", "Malone", role="aut"),
     person("Budiman", "Minasny", role="aut"),
     person("Michael", "Nelson", role="aut"))
-Authors: Sebastian Campbell, Brendan Malone, Budiman Minasny, Michael Nelson, Mario Fajardo 
+Authors: Sebastian Campbell, Brendan Malone, Budiman Minasny, Michael Nelson,
+    Mario Fajardo
 Maintainer: Mario Fajardo <mario.fajardopedraza@sydney.edu.au>
-Description: A selection of most common Visible and Near infrared spectra data manipulation functions 
+Description: A selection of most common Visible and Near infrared spectra data
+    manipulation functions
 License: GPL-3
 URL: https://github.com/Soilsecuritylab/spectroscopy_package
 Depends: 
@@ -26,8 +28,14 @@ Imports:
     ggplot2,
     wavethresh,
     MASS
+<<<<<<< HEAD
 Suggests: 
     testthat,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+=======
+Suggests:
+    testthat
+RoxygenNote: 5.0.1
+>>>>>>> 1ca1e8e5001cab6a35b5f71199f5542e280cb54b

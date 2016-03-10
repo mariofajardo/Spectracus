@@ -6,7 +6,7 @@
 \usage{data(soilSpecDat)}
 
 \format{
-\code{soilSpecDat} is 125 row \code{dataframe} with the first 4 columns indicating observation identifier, measured clay content, total carbon and pH. The remaining columns are visible and near infrared reflectence data. The entire spectral range is 350-2500 nm with 1 nm resolution. }
+\code{soilSpecDat} is 125 row \code{dataframe} with the first 4 columns indicating observation identifier, measured clay content, total carbon and pH. The remaining columns are visible and near infrared reflectence data. The spectral range is 350-2500nm with 1nm resolution. }
 
 \details{This is a common soil and associated spectral data set that would be used for soil spectroscopy studies}
 
@@ -14,15 +14,18 @@
 
 \references{
 \itemize{
-\item This data is copyright of the Soil Security Lab, The University of Sydney. If any part of this data is to be used in any publication or report, please provide a citation:
-Soil Security Laboratory, 2015. R package for soil spectroscopy. The University of Sydney, Sydney, Australia.
+\item This data is copyright of the Soil Security Laboratory, The University of Sydney. If any part of this data is to be used in any publication or report, please provide a citation:
+Soil Security Laboratory, 2016. R package for soil spectroscopy. The University of Sydney, Sydney, Australia.
 }
 }
 
 \examples{
+<<<<<<< HEAD
 library(spectroscopy)
 
 
+=======
+>>>>>>> 1ca1e8e5001cab6a35b5f71199f5542e280cb54b
 data(soilSpecDat)
 
 #Histogram of all the clay data
