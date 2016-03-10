@@ -10,7 +10,7 @@
 
 \details{This is a common soil and associated spectral data set that would be used for soil spectroscopy studies}
 
-\note{This data set can be used as a companion to functions contained in the \code{spectroscopy_package}.}
+\note{This data set can be used as a companion to functions contained in the \code{\link{spectroscopy} package.}
 
 \references{
 \itemize{
@@ -20,7 +20,7 @@ Soil Security Laboratory, 2015. R package for soil spectroscopy. The University 
 }
 
 \examples{
-library(spectroscopy_package)
+library(spectroscopy)
 
 
 data(soilSpecDat)
