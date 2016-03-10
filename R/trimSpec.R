@@ -1,5 +1,5 @@
 #' Trim regular spectra
-#' 
+#' NOTE: Need to make this more general
 #' Convenience wrapper for \link{strip_spectra}, for wavelengths 350:2500
 #' 
 #' @param spectra a matrix of spectra where each row represents a spectrum and each column a wavelength
@@ -9,17 +9,12 @@
 #' 
 #' @export
 
-trimSpec <- function(spectra, wavlimits, datawavs=350:2500, ...){
+trimSpec <- function(spectra, wavlimits) {
+  datawavs <- as.numeric(names(spectra))
+  limits <- which(datawavs %in% wavlimits)
+  kept_index <- seq(limits[1], limits[2], 1)
+  trimmed_spectra <- spectra[, kept_index]
+  kept_names <- datawavs[kept_index]
+  colnames(trimmed_spectra) <- kept_names
+  return(trimmed_spectra)}
 
-  strip_spectra(spectra=spectra, wavlimits=wavlimits, datawavs=datawavs, ...)
-  
-}
-
-# trimSpec<- function (spectra, wavlimits, wavelength=350:2500){
-#   datawavs <- as.numeric(wavelength)  # make a long sequence of all wavelength labels in the spectrum
-#   limits <- which(datawavs %in% wavlimits)  #Which column labels match up with the wavelength bounds
-#   kept_index <- seq(limits[1], limits[2], 1)
-#   trimmed_spectra <- spectra[,kept_index] # The trimmed spectra
-#   kept_names <- datawavs[kept_index]
-#   colnames(trimmed_spectra) <- kept_names
-#   return(trimmed_spectra)}
