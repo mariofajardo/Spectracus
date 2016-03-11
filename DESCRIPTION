@@ -16,7 +16,7 @@ Description: A selection of most common Visible and Near infrared spectra data
     manipulation functions
 License: GPL-3
 Depends:
-    R (>= 3.1.1)
+    R (>= 3.2.2)
 Imports:
     pls,
     plyr,
@@ -28,4 +28,4 @@ Imports:
     wavethresh,
 Suggests:
     testthat
-RoxygenNote: 4.0.2
+RoxygenNote: 4.1.1
