@@ -15,6 +15,7 @@ Maintainer: Mario Fajardo <mario.fajardopedraza@sydney.edu.au>
 Description: A selection of most common Visible and Near infrared spectra data
     manipulation functions
 License: GPL-3
+Require: R (>= 3.2.2)
 Imports:
     pls,
     plyr,
