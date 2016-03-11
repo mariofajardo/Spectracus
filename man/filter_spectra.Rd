@@ -4,7 +4,8 @@
 \alias{filter_spectra}
 \title{Filtering functions for spectra}
 \usage{
-filter_spectra(spectra, type, n = 11, p = 2, m = 0, res = NULL)
+filter_spectra(spectra, type, n = 11, p = 2, m = 0, res = NULL,
+  specType = NULL)
 }
 \arguments{
 \item{spectra}{matrix where each row is a spectrum and each column is a separate wavelength. It is important that these wavelengths be at least very nearly evenly spaced.}

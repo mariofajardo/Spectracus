@@ -1,3 +1,11 @@
+spectroscopy 0.5
+
+* goof function optimized
+* Citation included
+* Fix several issues in function descriptions, references and examples 
+* Vignettes added
+* filter_spectra function added as a wrapup for filtering functions
+
 spectroscopy 0.4
 
 * Migrated from original repository

@@ -1,14 +1,16 @@
 #' Reduce column dimensions
 #' 
-#' This function reduces the column dimensions
+#' This function reduces the column dimensions by averaging values inside a window of a specified size
 #' 
 #' 
 #' @param spectra matrix where each row is a spectrum and each column a wavelength
 #' @param window window size over which the spectra will be averaged
-#'
-#'
+#' @examples
+#' observed <- c(1,5,6,8,9,20)
+#' predicted <- c(2,5,6,7,9,22)
+#' goof(observed,predicted)
+#' goof(observed,predicted,coefficient = c('R2','RMSE','RPD'),cex=3,pch=19,col='blue')
 #' @author Brendan Malone
-#'   
 #' @export
 
 compSpec <- function(spectra, window) {

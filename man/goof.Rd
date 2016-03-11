@@ -4,19 +4,42 @@
 \alias{goof}
 \title{Goodness of fit}
 \usage{
-goof(observed, predicted, ...)
+goof(observed, predicted, coefficient = c("R2", "concordance", "MSE", "RMSE",
+  "bias", "MSEc", "RMSEc", "RPD", "RPIQ"), plot = TRUE, ...)
 }
 \arguments{
 \item{observed}{numeric vector of observed values}
 
 \item{predicted}{numeric vector of predicted values}
 
-\item{...}{arguments passed to \code{\link{eqscplot}}}
+\item{coefficient}{character vector with performance coefficients as follows:
+\itemize{
+\item{'R2'}{ for coefficient of determination}
+\item{'concordance'}{ for coefficient of concordance as described in Lin, (1989)}
+\item{'MSE'}{ for mean squared error}
+\item{'RMSE'}{ for root mean squared error}
+\item{'bias'}{ for bias coefficient \emph{i.e., bias = mean predicted values - mean observed values}}
+\item{'MSEc'}{ for bias corrected mean squared error}
+\item{'RMSEc'}{ for bias corrected root mean squared error}
+\item{'RPD'}{ for ratio of performance to deviation}
+\item{'RPIQ'}{ for ratio of performance to interquartile distance}
+}}
+
+\item{...}{arguments passed to \code{\link{plot}}}
 }
 \description{
 Goodness of fit
 }
+\examples{
+observed <- c(1,5,6,8,9,20)
+predicted <- c(2,5,6,7,9,22)
+goof(observed,predicted)
+goof(observed,predicted,coefficient = c('R2','RMSE','RPD'),cex=3,pch=19,col='blue')
+}
 \author{
 Brendan Malone
+}
+\references{
+{Lin, L., 1989. A Concordance Correlation Coefficient to Evaluate Reproducibility. Biometrics 45(1), 255-268.}
 }
 
