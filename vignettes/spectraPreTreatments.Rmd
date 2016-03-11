@@ -3,12 +3,14 @@ title: "SpectralPreTreatments"
 author: "Brendan Malone"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{SpectralPreTreatments}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
-bibliography: spectralInference.bib
 mathjax: default
+bibliography: spectralInference.bib
+vignette: >
+  %\VignetteIndexEntry{SpectralPreTreatments
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+
+
 ---
 
 # <span style="color:brown">**Sydney Soil School**</span> 
