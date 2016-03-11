@@ -16,7 +16,7 @@ Description: A selection of most common Visible and Near infrared spectra data
     manipulation functions
 License: GPL-3
 Require: R (>= 3.2.2)
-Imports: 
+Imports:
     pls,
     plyr,
     signal,
@@ -25,9 +25,9 @@ Imports:
     treemap,
     ggplot2,
     wavethresh,
-Suggests: 
+Suggests:
     testthat,
     knitr,
     rmarkdown
-RoxygenNote: 4.1.1
+RoxygenNote: 5.0.1
 VignetteBuilder: knitr

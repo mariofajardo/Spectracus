@@ -6,7 +6,7 @@ output: rmarkdown::html_vignette
 mathjax: default
 bibliography: spectralInference.bib
 vignette: >
-  %\VignetteIndexEntry{SpectralPreTreatments
+  %\VignetteIndexEntry{SpectralPreTreatments}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 
