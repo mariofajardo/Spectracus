@@ -26,7 +26,6 @@ Imports:
     treemap,
     ggplot2,
     wavethresh,
-    MASS
 Suggests:
     testthat
-RoxygenNote: 5.0.1
+RoxygenNote: 4.0.2
