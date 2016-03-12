@@ -13,6 +13,7 @@
 #' @param spectra matrix where each row is a spectrum and each column is a separate wavelength. It is important that these wavelengths be at least very nearly evenly spaced.
 #' @param If type = 'S-Golay' then n,p,m parameters control \code{\link{sgolayfilt}} window size, polynomial order and derivative order respectively.
 #' @param If type = 'Wavelet' res level to be extracted from wavelet decomposition model, see \code{\link{accessC.wd}}
+#' @param If type = 'C-hull' specType also needs to be specified, with 0 if the data is in absorbance units or 1 if the data is in reflectance units.
 #' @importFrom plyr aaply
 #' @importFrom signal sgolayfilt
 #' @importFrom wavethresh wd accessC.wd

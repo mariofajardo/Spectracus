@@ -24,7 +24,7 @@ colnames(spectra) <- substr(colnames(spectra),2,5)
 wavelengths <- as.numeric(colnames(spectra))
 
 #plot spectrum
-plot(wavelengths,spectra[1,],type='b')
+plot(wavelengths,spectra[1,],type='b',ylab= "reflectance")
 
 spectra_2 <- compSpec(spectra,9)
 wavelength_2 <- colnames(spectra_2)
