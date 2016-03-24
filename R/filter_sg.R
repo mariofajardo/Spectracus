@@ -1,9 +1,9 @@
 #' Sativsky-Golay filtering of spectra
 #' 
 #' This function performs a Sativsky Golay filter using \code{\link{sgolayfilt}} on matrices in which each row is a separate spectrum.
-#' NOTE: This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
 #' @param spectra matrix where each row is a spectrum and each column is a separate wavelength. It is important that these wavelengths be at least very nearly evenly spaced.
 #' @param n,p,m parameters controlling \code{\link{sgolayfilt}} window size, polynomial order and derivative order respectively.
+#' @note This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
 #' @importFrom plyr aaply
 #' @importFrom signal sgolayfilt
 #' @export filter_sg

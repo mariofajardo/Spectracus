@@ -2,8 +2,7 @@
 % Please edit documentation in R/snvBLC.R
 \name{snvBLC}
 \alias{snvBLC}
-\title{Standard Normal Variate (SNV) transformation
-NOTE: This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead}
+\title{Standard Normal Variate (SNV) transformation}
 \usage{
 snvBLC(spectra)
 }
@@ -12,6 +11,8 @@ snvBLC(spectra)
 }
 \description{
 Standard Normal Variate (SNV) transformation
-NOTE: This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
+}
+\note{
+This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
 }
 

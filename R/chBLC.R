@@ -1,7 +1,7 @@
 #' Continuum removal by removing the convex hull
 #' 
 #' This function applies a linearly interpolated convex hull to the spectra and returns the ratio of the deviation to the hull value
-#' NOTE: This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
+#' @note This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
 #' @param spectra a matrix or data.frame with wavelengths as columns and spectra as rows
 #' @export
 

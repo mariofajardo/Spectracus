@@ -13,7 +13,9 @@ filter_sg(spectra, n = 11, p = 2, m = 1)
 }
 \description{
 This function performs a Sativsky Golay filter using \code{\link{sgolayfilt}} on matrices in which each row is a separate spectrum.
-NOTE: This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
+}
+\note{
+This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
 }
 \references{
 Savitzky, Abraham and Golay, M. J. E. (1964) Smoothing and Differentiation of Data by Simplified Least Squares Procedures, Analytical Chemistry, 36, pp. 1627-1629.

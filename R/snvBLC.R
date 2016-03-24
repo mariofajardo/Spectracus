@@ -1,6 +1,6 @@
 #' Standard Normal Variate (SNV) transformation
-#' NOTE: This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
 #' @param spectra a matrix or data.frame with wavelengths as columns and spectra as rows
+#' @note This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
 #' @export
 
 snvBLC<- function(spectra){

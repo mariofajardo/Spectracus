@@ -2,17 +2,17 @@
 % Please edit documentation in R/mscBLC.R
 \name{mscBLC}
 \alias{mscBLC}
-\title{Multiplicative scatter correction (MSC)
- NOTE: This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
- @param spectra a matrix or data.frame with wavelengths as columns and spectra as rows
- @export}
+\title{Multiplicative scatter correction (MSC)#'}
 \usage{
 mscBLC(spectra)
 }
+\arguments{
+\item{spectra}{a matrix or data.frame with wavelengths as columns and spectra as rows}
+}
 \description{
-Multiplicative scatter correction (MSC)
- NOTE: This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
- @param spectra a matrix or data.frame with wavelengths as columns and spectra as rows
- @export
+Multiplicative scatter correction (MSC)#'
+}
+\note{
+This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
 }
 
