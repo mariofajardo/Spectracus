@@ -1,5 +1,6 @@
 spectroscopy 0.5
 
+* chBLC_ext function added
 * goof function optimized
 * Citation included
 * Fix several issues in function descriptions, references and examples 
