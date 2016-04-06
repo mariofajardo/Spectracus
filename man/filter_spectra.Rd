@@ -4,7 +4,8 @@
 \alias{filter_spectra}
 \title{Filtering functions for spectra}
 \usage{
-filter_spectra(spectra, type, n = 11, p = 2, m = 0, res = NULL)
+filter_spectra(spectra, type, n = 11, p = 2, m = 0, res = NULL,
+  specType = NULL)
 }
 \arguments{
 \item{spectra}{matrix where each row is a spectrum and each column is a separate wavelength. It is important that these wavelengths be at least very nearly evenly spaced.}
@@ -12,6 +13,8 @@ filter_spectra(spectra, type, n = 11, p = 2, m = 0, res = NULL)
 \item{If}{type = 'S-Golay' then n,p,m parameters control \code{\link{sgolayfilt}} window size, polynomial order and derivative order respectively.}
 
 \item{If}{type = 'Wavelet' res level to be extracted from wavelet decomposition model, see \code{\link{accessC.wd}}}
+
+\item{If}{type = 'C-hull' specType also needs to be specified, with 0 if the data is in absorbance units or 1 if the data is in reflectance units.}
 }
 \description{
 This function calls different filters on matrices in which each row is a separate spectrum

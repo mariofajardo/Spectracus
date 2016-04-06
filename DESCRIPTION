@@ -1,8 +1,8 @@
 Package: spectroscopy
 Type: Package
 Title: Functions for Visible and Near Infrared data manipulation
-Version: 0.4
-Date: 2015-03-23
+Version: 0.5
+Date: 2016-03-23
 Authors@R: c(person("Mario", "Fajardo", role = c("aut", "cre"),
     email="soilseclab@gmail.com"),
     person("Sebastian", "Campbell", role = c("aut")),
@@ -15,18 +15,23 @@ Maintainer: Mario Fajardo <mario.fajardopedraza@sydney.edu.au>
 Description: A selection of most common Visible and Near infrared spectra data
     manipulation functions
 License: GPL-3
+<<<<<<< HEAD
 URL: https://github.com/Soilsecuritylab/spectroscopy_package
 Depends: 
     R (>= 3.1.1),
     pls
 Imports: 
+=======
+Require: R (>= 3.2.2)
+Imports:
+>>>>>>> master
     plyr,
     signal,
-    mvoutlier,
     munsell,
     treemap,
     ggplot2,
     wavethresh,
+<<<<<<< HEAD
     MASS
 <<<<<<< HEAD
 Suggests: 
@@ -35,7 +40,15 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 =======
+=======
+>>>>>>> master
 Suggests:
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 RoxygenNote: 5.0.1
+<<<<<<< HEAD
 >>>>>>> 1ca1e8e5001cab6a35b5f71199f5542e280cb54b
+=======
+VignetteBuilder: knitr
+>>>>>>> master

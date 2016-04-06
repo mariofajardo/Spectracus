@@ -12,7 +12,27 @@ compSpec(spectra, window)
 \item{window}{window size over which the spectra will be averaged}
 }
 \description{
-This function reduces the column dimensions
+This function reduces the column dimensions by averaging values inside a window of a specified size
+}
+\examples{
+#load data
+data("soilSpecDat")
+
+#subset spectra
+spectra <- soilSpecDat[,grepl('[X]',colnames(soilSpecDat))]
+colnames(spectra) <- substr(colnames(spectra),2,5)
+wavelengths <- as.numeric(colnames(spectra))
+
+#plot spectrum
+plot(wavelengths,spectra[1,],type='b',ylab= "reflectance")
+
+spectra_2 <- compSpec(spectra,9)
+wavelength_2 <- colnames(spectra_2)
+
+#plot processed spectrum
+points(wavelength_2,spectra_2[1,],cex=2,col='red',pch=21,bg='blue') 
+
+
 }
 \author{
 Brendan Malone

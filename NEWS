@@ -1,3 +1,12 @@
+spectroscopy 0.5
+
+* chBLC_ext function added
+* goof function optimized
+* Citation included
+* Fix several issues in function descriptions, references and examples 
+* filter_spectra function added as a wrapup for filtering functions
+* Fit_bag_plsr modified
+
 spectroscopy 0.4
 
 * Migrated from original repository

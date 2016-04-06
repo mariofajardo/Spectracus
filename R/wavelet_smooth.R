@@ -2,7 +2,7 @@
 #' 
 #' @param spectra a matrix or data.frame where the columns are wavelengths and the rows, individual spectra
 #' @param res level (an integer >1) to be extracted from wavelet decomposition model
-#' 
+#' @note This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
 #' @author Brendan Malone
 #' 
 #' @importFrom wavethresh wd accessC.wd

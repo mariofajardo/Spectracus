@@ -14,6 +14,9 @@ wavelet_smooth(spectra, res)
 \description{
 Wavelet smoothing
 }
+\note{
+This function will be deprecated in the next version, please use \code{\link{filter_spectra}} instead
+}
 \author{
 Brendan Malone
 }

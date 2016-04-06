@@ -6,7 +6,7 @@
 NOTE: Need to make this more general
 Convenience wrapper for \link{strip_spectra}, for wavelengths 350:2500}
 \usage{
-trimSpec(spectra, wavlimits, datawavs = 350:2500, ...)
+trimSpec(spectra, wavlimits)
 }
 \arguments{
 \item{spectra}{a matrix of spectra where each row represents a spectrum and each column a wavelength}
