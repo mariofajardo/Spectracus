@@ -148,7 +148,7 @@ chBLC_ext <- function (spectra, lower = 350, upper = 2500, AUC=TRUE)
   
   retval <- list(wave = hull_data$wave, 
                  c.hull = hull_spectra, 
-                 raw.spec = data1$y, 
+                 raw.spec = rev(data1$y), 
                  continuum = linear_approx[[2]], 
                  polygon = hull_polygon,
                  area=area_feature,
