@@ -15,40 +15,20 @@ Maintainer: Mario Fajardo <mario.fajardopedraza@sydney.edu.au>
 Description: A selection of most common Visible and Near infrared spectra data
     manipulation functions
 License: GPL-3
-<<<<<<< HEAD
 URL: https://github.com/Soilsecuritylab/spectroscopy_package
-Depends: 
-    R (>= 3.1.1),
-    pls
-Imports: 
-=======
 Require: R (>= 3.2.2)
 Imports:
->>>>>>> master
     plyr,
     signal,
     munsell,
     treemap,
     ggplot2,
     wavethresh,
-<<<<<<< HEAD
-    MASS
-<<<<<<< HEAD
 Suggests: 
     testthat,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-=======
-=======
->>>>>>> master
-Suggests:
-    testthat,
-    knitr,
-    rmarkdown
 RoxygenNote: 5.0.1
-<<<<<<< HEAD
->>>>>>> 1ca1e8e5001cab6a35b5f71199f5542e280cb54b
-=======
-VignetteBuilder: knitr
->>>>>>> master
+
+

@@ -4,7 +4,7 @@
 \alias{chBLC_ext}
 \title{Spectra normalisation via continuum estimation}
 \usage{
-chBLC_ext(spectra, lower = 350, upper = 2500, specType = 0)
+chBLC_ext(spectra, lower = 350, upper = 2500, AUC = TRUE)
 }
 \arguments{
 \item{spectra}{A single spectrum of class \code{data.frame}. Column values represent spectral values per wavelength unit.}
@@ -14,13 +14,17 @@ chBLC_ext(spectra, lower = 350, upper = 2500, specType = 0)
 \item{upper}{numeric; The upper wavelength bound of the spectral feature or region of interest.}
 }
 \value{
-Returns a list with 5 elements:
+Returns a list with 8 elements:
 \itemize{
 \item{wave}{ The sequence of spectral wavelengths of the region of interest.}
 \item{c.hull}{ The normalised or continuum removed spectrum}
 \item{raw.spec}{ The raw spectrum}
 \item{continuum}{ The fitted continuum}
 \item{polygon}{ Vertices for constructing the polygon of the normalised spectral feature}
+\item{area}{ NEEDS A GOOD DESCRIPTION AND REFERENCES HOPEFULLY}
+\item{depth}{ NEEDS A GOOD DESCRIPTION AND REFERENCES HOPEFULLY}
+\item{slope}{ NEEDS A GOOD DESCRIPTION AND REFERENCES HOPEFULLY}
+
 }
 }
 \description{
@@ -53,15 +57,16 @@ specTrim<- trimSpec(spectra, wavlimits=range(lower:upper))
 plot(seq(from=lower, to=upper, by=1),specTrim[1,],type="l") #FIrst Spectrum
 
 #Run the continuum fitting function
-spec.CR<- chBLC_ext(specTrim[1,], lower, upper,specType = 1) #First spectrum
+spec.CR<- chBLC_ext(specTrim[1,], lower, upper) #First spectrum
 # Draw the continuum
 lines(seq(from=lower, to=upper, by=1),spec.CR$continuum,col="red") 
 
 #Plot continuum removed spectrum
 plot(seq(from=lower, to=upper, by=1),spec.CR$c.hull,type="l", xlab="wavelength", ylab="reflectance")
+polygon(spec.CR$polygon,col='red')
 }
 \author{
-Brendan Malone
+Mario Fajardo and Brendan Malone
 }
 \references{
 {
