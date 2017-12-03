@@ -12,11 +12,13 @@ chBLC_ext(spectra, lower = 350, upper = 2500, AUC = TRUE)
 \item{lower}{numeric; The lower wavelength bound of the spectral feature or region of interest.}
 
 \item{upper}{numeric; The upper wavelength bound of the spectral feature or region of interest.}
+
+\item{AUC}{A logical that is expressed as the Area Under the Curve (AUC) or Over the Curve is desired, default is set to TRUE i.e., AUC}
 }
 \value{
 Returns a list with 8 elements:
 \itemize{
-\item{wave}{ The sequence of spectral wavelengths of the region of interest.}
+\item{wave}{ The sequence of spectral wavelengths of the region of interest}
 \item{c.hull}{ The normalised or continuum removed spectrum}
 \item{raw.spec}{ The raw spectrum}
 \item{continuum}{ The fitted continuum}
@@ -65,12 +67,11 @@ lines(seq(from=lower, to=upper, by=1),spec.CR$continuum,col="red")
 plot(seq(from=lower, to=upper, by=1),spec.CR$c.hull,type="l", xlab="wavelength", ylab="reflectance")
 polygon(spec.CR$polygon,col='red')
 }
-\author{
-Mario Fajardo and Brendan Malone
-}
 \references{
 {
 More information and examples of this function can be found in the Soil Spectral Inference training materials and references therein from the Sydney Soil Schools.
 }
 }
-
+\author{
+Mario Fajardo and Brendan Malone
+}

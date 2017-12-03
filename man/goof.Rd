@@ -36,10 +36,9 @@ predicted <- c(2,5,6,7,9,22)
 goof(observed,predicted)
 goof(observed,predicted,coefficient = c('R2','RMSE','RPD'),cex=3,pch=19,col='blue')
 }
-\author{
-Brendan Malone
-}
 \references{
 {Lin, L., 1989. A Concordance Correlation Coefficient to Evaluate Reproducibility. Biometrics 45(1), 255-268.}
 }
-
+\author{
+Brendan Malone
+}

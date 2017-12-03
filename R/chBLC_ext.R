@@ -21,11 +21,10 @@
 #' @param spectra A single spectrum of class \code{data.frame}. Column values represent spectral values per wavelength unit.
 #' @param lower numeric; The lower wavelength bound of the spectral feature or region of interest.
 #' @param upper numeric; The upper wavelength bound of the spectral feature or region of interest.
-#' @param AUC A logical that is expressed as the Area Under the Curve (AUC) or Over the Curve is desired, default is set to TRUE i.e., AUC}
-#' 
+#' @param AUC A logical that is expressed as the Area Under the Curve (AUC) or Over the Curve is desired, default is set to TRUE i.e., AUC
 #' @return Returns a list with 8 elements:
 #' \itemize{
-#' \item{wave}{ The sequence of spectral wavelengths of the region of interest.}
+#' \item{wave}{ The sequence of spectral wavelengths of the region of interest}
 #' \item{c.hull}{ The normalised or continuum removed spectrum}
 #' \item{raw.spec}{ The raw spectrum}
 #' \item{continuum}{ The fitted continuum}

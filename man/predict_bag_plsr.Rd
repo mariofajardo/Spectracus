@@ -24,10 +24,9 @@ A list containing:
 \description{
 Predict using a fitted bootstrap aggregated PLSR model
 }
-\author{
-Budiman Minasny
-}
 \seealso{
 \code{\link{fit_bag_plsr}}
 }
-
+\author{
+Budiman Minasny
+}

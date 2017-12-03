@@ -24,10 +24,9 @@ A list containing:
 \description{
 Fit bootstrap aggregated PLSR
 }
-\author{
-Budiman Minasny
-}
 \seealso{
 \code{\link{predict_bag_plsr}}
 }
-
+\author{
+Budiman Minasny
+}

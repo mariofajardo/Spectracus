@@ -37,4 +37,3 @@ points(wavelength_2,spectra_2[1,],cex=2,col='red',pch=21,bg='blue')
 \author{
 Brendan Malone
 }
-

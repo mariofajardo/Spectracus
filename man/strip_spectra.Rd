@@ -21,4 +21,3 @@ This function subsets a chosen range of wavelengths from the spectra. It can
 \author{
 Sebastian Campbell
 }
-

@@ -20,4 +20,3 @@ This function will be deprecated in the next version, please use \code{\link{fil
 \author{
 Brendan Malone
 }
-

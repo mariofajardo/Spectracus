@@ -26,4 +26,3 @@ Creates a treemap with frequency of munsell colours as the size of the tree rect
 \author{
 Michael Nelson, Sebastian Campbell, Mario Fajardo
 }
-

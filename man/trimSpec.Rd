@@ -22,4 +22,3 @@ Trim regular spectra
 NOTE: Need to make this more general
 Convenience wrapper for \link{strip_spectra}, for wavelengths 350:2500
 }
-
