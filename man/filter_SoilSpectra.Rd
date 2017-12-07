@@ -23,6 +23,8 @@ filter_SoilSpectra(SoilSpectra, type, n = 11, p = 2, m = 0, res = NULL,
 \item{If}{type = 'Wavelet' res level to be extracted from wavelet decomposition model, see \code{\link{accessC.wd}}}
 
 \item{If}{type = 'C-hull' specType also needs to be specified, with 0 if the data is in absorbance units or 1 if the data is in reflectance units.}
+
+\item{If}{type is a character vector with more than one filter type the method will apply all the filters in the order they are specified.}
 }
 \description{
 This method calls different filters on matrices in which each row is a separate spectrum
