@@ -4,7 +4,7 @@
 #' @rdname  plot
 #' @param SoilSpectra Object of class \code{\link{SoilSpectra}}.
 #' @author Mario Fajardo.
-#' @exportMethod   plot
+#' @exportMethod plot
 #' @examples  
 #' \dontrun{
 #' data("SoilSpectraExample")
