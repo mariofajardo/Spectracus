@@ -25,7 +25,8 @@ setClass(Class = 'SoilSpectra',
                  Type='character',
                  ID='character',
                  Properties='data.frame',
-                 Treatments='character'))
+                 Treatments=c('ANY'))
+)
 
 
 

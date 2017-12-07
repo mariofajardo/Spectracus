@@ -104,7 +104,8 @@ setMethod(f = 'filter_SoilSpectra',
         ## run filter
         sg <- t(apply(spectra, 1, sgolayfilt, n = n, p = p, m = m))
         SoilSpectra@Spectra <- sg
-        SoilSpectra@Treatments <- paste0(SoilSpectra@Treatments,' + ','S-Golay','n=',n,'p=',p,'m=',m)
+        treatmentDetails <- paste0('S-Golay','n=',n,'p=',p,'m=',m)
+        SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
         return(SoilSpectra)
       }
       
@@ -121,14 +122,16 @@ setMethod(f = 'filter_SoilSpectra',
         }
         
         SoilSpectra@Spectra <- mscMat
-        SoilSpectra@Treatments <- paste0(SoilSpectra@Treatments,' + ','MSC')
+        treatmentDetails <- 'MSC'
+        SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
         return(SoilSpectra)
       }
       
       if(type=='SNV'){
         snvMat<-(spectra - rowMeans(spectra))/apply(spectra,1,sd)
         SoilSpectra@Spectra <- snvMat
-        SoilSpectra@Treatments <- paste0(SoilSpectra@Treatments,' + ','SNV')
+        treatmentDetails <- 'SNV'
+        SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
         return(SoilSpectra)
       }
       
@@ -213,7 +216,8 @@ setMethod(f = 'filter_SoilSpectra',
         }
         
         SoilSpectra@Spectra <- hull_spectra
-        SoilSpectra@Treatments <- paste0(SoilSpectra@Treatments,' + ','C-Hull')
+        treatmentDetails <- 'C-hull'
+        SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
         return(SoilSpectra)
       }
         

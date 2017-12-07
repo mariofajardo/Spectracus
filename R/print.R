@@ -19,7 +19,7 @@ setMethod(f = 'print',
           {
             cat('\n',length(x@ID),' soil observations','\n\n',
                 x@Type,'values ranging from', x@Wavelength[1],' to ',tail(x@Wavelength)[6],'nm in the ',x@Range,'region of the electromagnetic spectrum','\n\n',
-                'Data type : ',x@Treatments,'\n\n',
+                'Data type : ',paste(x@Treatments,collapse = '+'),'\n\n',
                 ncol(x@Properties),'associated attributes')
           }
 ) 
