@@ -9,9 +9,11 @@
 }
 \arguments{
 \item{SoilSpectra}{Object of class \code{\link{SoilSpectra}}.}
+
+\item{ID}{numeric or character vector with ID of spectra to plot (default=1).}
 }
 \description{
-This method generates a plot for a Spectra Object
+This method generates a plot.SoilSpectra for a Spectra Object
 }
 \examples{
  

@@ -12,12 +12,11 @@
 #' @name SoilSpectra
 #' @rdname SoilSpectra
 #' @exportClass SoilSpectra
-#' @exportMethod print
 #' @author Mario Fajardo, Brendan Malone, Budiman Minasny and Edward Jones.
 
 setClass(Class = 'SoilSpectra',
          slots=c(Instrument='character',
-                 Spectra='matrix',
+                 Spectra=c('array'),
                  Wavelength='numeric',
                  Range='character',
                  Wavenumber='numeric',

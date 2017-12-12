@@ -102,7 +102,12 @@ setMethod(f = 'filter_SoilSpectra',
       
       if (type =='S-Golay'){
         ## run filter
-        sg <- t(apply(spectra, 1, sgolayfilt, n = n, p = p, m = m))
+        if(nrow(spectra)>1){
+          sg <- t(apply(spectra, 1, sgolayfilt, n = n, p = p, m = m))
+        }else{
+          sg <- matrix(sgolayfilt(spectra, n = n, p = p, m = m),ncol = ncol(spectra))
+        }  
+        
         SoilSpectra@Spectra <- sg
         treatmentDetails <- paste0('S-Golay','n=',n,'p=',p,'m=',m)
         SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
