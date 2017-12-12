@@ -84,7 +84,7 @@ setGeneric("AreaUnderCurve",
 
 setMethod(f = 'AreaUnderCurve',
           signature = 'SoilSpectra',
-          definition= function(SoilSpectra='SoilSpectra',AUC=TRUE,...)
+          definition= function(SoilSpectra,AUC=TRUE,...)
             {
             
             spectra <- SoilSpectra@Spectra
