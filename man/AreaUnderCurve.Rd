@@ -14,13 +14,13 @@ AreaUnderCurve(SoilSpectra, AUC = TRUE, ...)
 \value{
 Returns a list with 8 elements:
 \itemize{
-\item{ContRemoved}{The normalised or continuum removed spectra}
-\item{InputSpec}{The input spectra}
-\item{continuum}{The fitted continuum}
-\item{polygon}{Vertices for constructing the polygon of the normalised spectral feature}
-\item{area}{area of the polygon}
-\item{depth}{difference between the highest reflectance/absorbance and the lower}
-\item{slope}{slope between the highest reflectance/absorbance and the lower}
+\item{hull}{ A \code{\link{SoilSpectra}} object with hull spectra (equivalent to \code{\link{filterSpectra}} output)}
+\item{raw}{ A \code{\link{SoilSpectra}} object with the input spectra}
+\item{polygons}{ Vertices for constructing the polygons of each normalised spectral feature}
+\item{contSpectra} {A \code{\link{SoilSpectra}} object with the Continuum removed spectra}
+\item{areas}{ areas of the polygons}
+\item{depths}{ difference between the highest reflectance/absorbance and the lower of each polygon}
+\item{slopes}{ slopes between the highest reflectance/absorbance and the lower of each polygon}
 
 }
 }
@@ -40,40 +40,62 @@ Selecting the convex hull features in the right order has been an ongoing teethi
 \dontrun{
 data("SoilSpectraExample")
 #Select a specific area
-SelectedArea <- SoilSpectraExample[123,2180:2230]
-
-plot(SelectedArea)
-
-#Run the continuum fitting function
-spec.CR<- AreaUnderCurve(SelectedArea,AUC=F)
+SelectedArea <- SoilSpectraExample[122:123,1950:2220]
 
 
-plot(filter_SoilSpectra(SoilSpectraExample[123,2000:2500],'S-Golay'))
-points(SelectedArea@Wavelength,spec.CR$`123`$raw.spec,type="l", xlab="wavelength", ylab="reflectance",col='red',lwd=5)
-lines(SelectedArea@Wavelength,spec.CR$`123`$continuum,col="red",lwd=5)
-
-#Plot continuum removed spectrum
-plot(SelectedArea@Wavelength,spec.CR$`123`$c.hull,type="l", xlab="wavelength", ylab="reflectance")
-polygon(spec.CR$`123`$polygon,col='red')
-
-
-
-SelectedArea <- SoilSpectraExample[123,2000:2180]
-
-plot(SelectedArea)
-
-#Run the continuum fitting function
+#Run the continuum fitting function for Area Under the Curve
 spec.CR<- AreaUnderCurve(SelectedArea,AUC=T)
 
 
-plot(filter_SoilSpectra(SoilSpectraExample[123,2000:2500],'S-Golay'))
-points(SelectedArea@Wavelength,spec.CR$`123`$raw.spec,type="l", xlab="wavelength", ylab="reflectance",col='red',lwd=5)
-lines(SelectedArea@Wavelength,spec.CR$`123`$continuum,col="red",lwd=5)
+plot(SoilSpectraExample[122:123,])
+points(spec.CR$raw[1],col='blue',type='l',lwd=2)
+points(spec.CR$raw[2],col='red',type='l',lwd=2)
 
-#Plot continuum removed spectrum
-plot(SelectedArea@Wavelength,spec.CR$`123`$c.hull,type="l", xlab="wavelength", ylab="reflectance")
-polygon(spec.CR$`123`$polygon,col='red')
+
+points(spec.CR$continuum[1],col='blue',type='l')
+points(spec.CR$continuum[2],col='red',type='l')
+
+
+
+#check Differences
+plot(spec.CR$hull)
+polygon(spec.CR$polygons$`122`,col='blue')
+polygon(spec.CR$polygons$`123`,col='red')
+
+spec.CR$areas
+spec.CR$slopes
+spec.CR$depths
+
+
+
+
+
+#Run the continuum fitting function for Area Over the curve
+SelectedArea <- SoilSpectraExample[122:123,2180:2230]
+
+spec.CR<- AreaUnderCurve(SelectedArea,AUC=F)
+
+
+plot(SoilSpectraExample[122:123,])
+points(spec.CR$raw[1],col='blue',type='l',lwd=2)
+points(spec.CR$raw[2],col='red',type='l',lwd=2)
+
+
+points(spec.CR$continuum[1],col='blue',type='l')
+points(spec.CR$continuum[2],col='red',type='l')
+
+
+
+#check Differences
+plot(spec.CR$hull)
+polygon(spec.CR$polygons$`122`,col='blue')
+polygon(spec.CR$polygons$`123`,col='red')
+
+spec.CR$areas
+spec.CR$slopes
+spec.CR$depths
 }
+
 }
 \author{
 Mario Fajardo and Brendan Malone
