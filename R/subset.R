@@ -3,9 +3,11 @@
 
 setMethod(f = "[", 
           signature=c("SoilSpectra"),
-          definition=function(x,i,j,...,drop=TRUE)
+          definition=function(x,i,j,...,drop=T)
           {
-           initialize(x,
+            if(missing(i)) i <- 1:length(x@ID)
+            if(missing(j)) j <- x@Wavelength[1]:rev(x@Wavelength)[1]
+            initialize(x,
                       Instrument=x@Instrument,
                       Spectra=if(length(i)>1) {x@Spectra[i,x@Wavelength%in%j]}else{t(matrix(x@Spectra[i,x@Wavelength%in%j]))},
                       Wavelength=x@Wavelength[x@Wavelength%in%j],

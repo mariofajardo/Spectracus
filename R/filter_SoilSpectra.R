@@ -11,75 +11,61 @@
 #' \item 'MSC' for Multiplicative scatter correction, 
 #' \item 'SNV' for Standard Normal Variate transformation.
 #' \item 'C-hull' for Continuum removal by removing the convex hull
+#' \item 'CompSpec' for reducing dimensions of a SoilSpectra by averaging values inside a window of a specified size
 #' }
-#' @param If type = 'S-Golay' then n,p,m parameters control \code{\link{sgolayfilt}} window size, polynomial order and derivative order respectively.
+#' @param If type = 'S-Golay' then n,p and m parameters control \code{\link{sgolayfilt}} window size, polynomial order and derivative order respectively.
 #' @param If type = 'Wavelet' res level to be extracted from wavelet decomposition model, see \code{\link{accessC.wd}}
 #' @param If type = 'C-hull' specType also needs to be specified, with 0 if the data is in absorbance units or 1 if the data is in reflectance units.
-#' @param If type is a character vector with more than one filter type the method will apply all the filters in the order they are specified.
+#' @param If type = 'CompSpec' then window parameter will be the size over which the spectra will be averaged
+#' @param If type is a character vector with more than one filter type the method will apply all the filters in the order they are specified. Extra parameters will be passed to ...=
 #' @importFrom signal sgolayfilt
 #' @importFrom signal sgolayfilt
 #' @importFrom wavethresh wd accessC.wd
 #' @references Savitzky, Abraham and Golay, M. J. E. (1964) Smoothing and Differentiation of Data by Simplified Least Squares Procedures, Analytical Chemistry, 36, pp. 1627-1629.
-#' @author Brendan Malone, Budiman Minasny, Michael Nelson, Sebastian Campbell and Mario Fajardo.
+#' @author Mario Fajardo, Brendan Malone, Budiman Minasny, Michael Nelson, Sebastian Campbell.
 #' @examples 
 #' \dontrun{
 #' data("SoilSpectraExample")
 #' 
 #' 
-#' plot(SoilSpectraExample@Wavelength,
-#'      SoilSpectraExample@Spectra[1,],
-#'      main=SoilSpectraExample@Treatments,
-#'      ylab=SoilSpectraExample@Type,
-#'      xlab=slotNames(SoilSpectraExample)[3])
-#' 
+#' plot(SoilSpectraExample[1,350:2500]) 
 #' 
 #' #Savitsky-Golay filter
 #' SGolay_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'S-Golay')
 #' 
-#' plot(SGolay_Spectra@Wavelength,
-#'      SGolay_Spectra@Spectra[1,],
-#'      main=SGolay_Spectra@Treatments,
-#'      ylab=SGolay_Spectra@Type,
-#'      xlab=slotNames(SGolay_Spectra)[3])
+#' plot(SGolay_Spectra[1,350:2500])
 #' 
 #' #Multiplicative scatter correction
 #' 
 #' MSC_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'MSC')
 #' 
-#' plot(MSC_Spectra@Wavelength,
-#'      MSC_Spectra@Spectra[1,],
-#'      main=MSC_Spectra@Treatments,
-#'      ylab=MSC_Spectra@Type,
-#'      xlab=slotNames(MSC_Spectra)[3])
-#' 
-#' 
-#' 
+#' plot(MSC_Spectra[1,350:2500])
+#'  
 #' #Standard Normal Variate transform
 #' 
 #' SNV_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'SNV')
 #' 
-#' plot(SNV_Spectra@Wavelength,
-#'      SNV_Spectra@Spectra[1,],
-#'      main=SNV_Spectra@Treatments,
-#'      ylab=SNV_Spectra@Type,
-#'      xlab=slotNames(SNV_Spectra)[3])
+#' plot(SNV_Spectra[1,350:2500])
 #' 
 #' 
 #' #Convex-hull transform
 #' 
 #' CHull_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'C-hull')
 #' 
-#' plot(CHull_Spectra@Wavelength,
-#'      CHull_Spectra@Spectra[1,],
-#'      main=CHull_Spectra@Treatments,
-#'      ylab=CHull_Spectra@Type,
-#'      xlab=slotNames(CHull_Spectra)[3])
+#' plot(CHull_Spectra[1,350:2500])
+#' 
+#' #CompSpec reduction
+#' 
+#' CompSpec_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'CompSpec',window=9)
+#' 
+#' plot(SoilSpectraExample[1,350:2500])
+#' points(CompSpec_Spectra[1,350:2500],col='red',lwd=2)
 #' }
 #' @exportMethod  filter_SoilSpectra
 
 
 setGeneric("filter_SoilSpectra",
-           function(SoilSpectra,type,n=11, p=2, m=0,res=NULL,...)
+           function(SoilSpectra,type,n=11, p=2, m=0,window=NULL,res=NULL,...)
              {
              standardGeneric('filter_SoilSpectra')
              }
@@ -87,14 +73,14 @@ setGeneric("filter_SoilSpectra",
 
 setMethod(f = 'filter_SoilSpectra',
           signature = 'SoilSpectra',
-          definition= function(SoilSpectra,type=NULL,n=11, p=2, m=0,res=NULL,...)
+          definition= function(SoilSpectra,type=NULL,n=11, p=2, m=0,window=1,res=NULL,...)
             {
     spectra <- SoilSpectra@Spectra
     specType <- SoilSpectra@Type
     
     if(length(type)>1){
       for(treatment in type){
-        SoilSpectra <- filter_SoilSpectra(SoilSpectra,treatment)
+        SoilSpectra <- filter_SoilSpectra(SoilSpectra,treatment,n=n, p=p, m=m,window=window)
       }
       return(SoilSpectra)
       
@@ -109,7 +95,7 @@ setMethod(f = 'filter_SoilSpectra',
         }  
         
         SoilSpectra@Spectra <- sg
-        treatmentDetails <- paste0('S-Golay','n=',n,'p=',p,'m=',m)
+        treatmentDetails <- paste0('S-Golay ','n=',n,'p=',p,'m=',m)
         SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
         return(SoilSpectra)
       }
@@ -225,8 +211,31 @@ setMethod(f = 'filter_SoilSpectra',
         SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
         return(SoilSpectra)
       }
+      
+      if(type=='CompSpec'){
         
+          if(ncol(spectra)%%window != 0){stop("Error: Pick a more compatable window size, the window needs to be a divisor of ",length(SoilSpectra@Wavelength, "(total number of bands)"))
+            
+            } else {
+              compMat <- matrix(NA, ncol = (ncol(spectra))/window, nrow = nrow(spectra))
+              cc <- 1
+              for (i in 1:ncol(compMat)) {
+                
+                if(nrow(compMat)==1) compMat[, i] <- mean(spectra[, cc:(cc + (window - 1))])
+                else compMat[, i] <- rowMeans(spectra[, cc:(cc + (window - 1))])
+                cc <- cc + window}
+                colab = seq(SoilSpectra@Wavelength[1],tail(SoilSpectraExample@Wavelength)[6], by = window)
+                }
+          
+          SoilSpectra@Spectra <- compMat
+          SoilSpectra@Wavelength <- colab
+          SoilSpectra@Wavenumber <- round(10000000/SoilSpectra@Wavelength)
+          treatmentDetails <- paste0('CompSpec',' window=',window)
+          SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
+          return(SoilSpectra)
+        }
       }
+
 
           }
 ) 

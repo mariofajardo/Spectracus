@@ -5,7 +5,7 @@
 \alias{[,SoilSpectra-method}
 \title{SoilSpectra subset method}
 \usage{
-\S4method{[}{SoilSpectra}(x, i, j, ..., drop = TRUE)
+\S4method{[}{SoilSpectra}(x, i, j, ..., drop = T)
 }
 \description{
 SoilSpectra subset method

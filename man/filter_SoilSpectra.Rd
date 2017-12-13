@@ -4,8 +4,8 @@
 \alias{filter_SoilSpectra}
 \title{Filtering methods for SoilSpectra objects}
 \usage{
-filter_SoilSpectra(SoilSpectra, type, n = 11, p = 2, m = 0, res = NULL,
-  ...)
+filter_SoilSpectra(SoilSpectra, type, n = 11, p = 2, m = 0,
+  window = NULL, res = NULL, ...)
 }
 \arguments{
 \item{SoilSpectra}{Object of class \code{\link{SoilSpectra}}.}
@@ -16,15 +16,18 @@ filter_SoilSpectra(SoilSpectra, type, n = 11, p = 2, m = 0, res = NULL,
 \item 'MSC' for Multiplicative scatter correction, 
 \item 'SNV' for Standard Normal Variate transformation.
 \item 'C-hull' for Continuum removal by removing the convex hull
+\item 'CompSpec' for reducing dimensions of a SoilSpectra by averaging values inside a window of a specified size
 }}
 
-\item{If}{type = 'S-Golay' then n,p,m parameters control \code{\link{sgolayfilt}} window size, polynomial order and derivative order respectively.}
+\item{If}{type = 'S-Golay' then n,p and m parameters control \code{\link{sgolayfilt}} window size, polynomial order and derivative order respectively.}
 
 \item{If}{type = 'Wavelet' res level to be extracted from wavelet decomposition model, see \code{\link{accessC.wd}}}
 
 \item{If}{type = 'C-hull' specType also needs to be specified, with 0 if the data is in absorbance units or 1 if the data is in reflectance units.}
 
-\item{If}{type is a character vector with more than one filter type the method will apply all the filters in the order they are specified.}
+\item{If}{type = 'CompSpec' then window parameter will be the size over which the spectra will be averaged}
+
+\item{If}{type is a character vector with more than one filter type the method will apply all the filters in the order they are specified. Extra parameters will be passed to ...=}
 }
 \description{
 This method calls different filters on matrices in which each row is a separate spectrum
@@ -35,59 +38,43 @@ depending on the value of 'type':
 data("SoilSpectraExample")
 
 
-plot(SoilSpectraExample@Wavelength,
-     SoilSpectraExample@Spectra[1,],
-     main=SoilSpectraExample@Treatments,
-     ylab=SoilSpectraExample@Type,
-     xlab=slotNames(SoilSpectraExample)[3])
-
+plot(SoilSpectraExample[1,350:2500]) 
 
 #Savitsky-Golay filter
 SGolay_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'S-Golay')
 
-plot(SGolay_Spectra@Wavelength,
-     SGolay_Spectra@Spectra[1,],
-     main=SGolay_Spectra@Treatments,
-     ylab=SGolay_Spectra@Type,
-     xlab=slotNames(SGolay_Spectra)[3])
+plot(SGolay_Spectra[1,350:2500])
 
 #Multiplicative scatter correction
 
 MSC_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'MSC')
 
-plot(MSC_Spectra@Wavelength,
-     MSC_Spectra@Spectra[1,],
-     main=MSC_Spectra@Treatments,
-     ylab=MSC_Spectra@Type,
-     xlab=slotNames(MSC_Spectra)[3])
-
-
-
+plot(MSC_Spectra[1,350:2500])
+ 
 #Standard Normal Variate transform
 
 SNV_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'SNV')
 
-plot(SNV_Spectra@Wavelength,
-     SNV_Spectra@Spectra[1,],
-     main=SNV_Spectra@Treatments,
-     ylab=SNV_Spectra@Type,
-     xlab=slotNames(SNV_Spectra)[3])
+plot(SNV_Spectra[1,350:2500])
 
 
 #Convex-hull transform
 
 CHull_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'C-hull')
 
-plot(CHull_Spectra@Wavelength,
-     CHull_Spectra@Spectra[1,],
-     main=CHull_Spectra@Treatments,
-     ylab=CHull_Spectra@Type,
-     xlab=slotNames(CHull_Spectra)[3])
+plot(CHull_Spectra[1,350:2500])
+
+#CompSpec reduction
+
+CompSpec_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'CompSpec',window=9)
+
+plot(SoilSpectraExample[1,350:2500])
+points(CompSpec_Spectra[1,350:2500],col='red',lwd=2)
 }
 }
 \references{
 Savitzky, Abraham and Golay, M. J. E. (1964) Smoothing and Differentiation of Data by Simplified Least Squares Procedures, Analytical Chemistry, 36, pp. 1627-1629.
 }
 \author{
-Brendan Malone, Budiman Minasny, Michael Nelson, Sebastian Campbell and Mario Fajardo.
+Mario Fajardo, Brendan Malone, Budiman Minasny, Michael Nelson, Sebastian Campbell.
 }
