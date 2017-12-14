@@ -35,6 +35,15 @@
 #' 
 #' plot(SGolay_Spectra[1,350:2500])
 #' 
+#' 
+#' #Wavelet smoothing
+#' 
+#' plot(SoilSpectraExample[1,350:2397],ylim=c(0,3))
+#' 
+#' points(filter_SoilSpectra(SoilSpectraExample[1,350:2397],type = 'Wavelet',res=9),col='red')
+#' points(filter_SoilSpectra(SoilSpectraExample[1,350:2397],type = 'Wavelet',res=8),col='blue')
+#' points(filter_SoilSpectra(SoilSpectraExample[1,350:2397],type = 'Wavelet',res=7),col='green')
+#' 
 #' #Multiplicative scatter correction
 #' 
 #' MSC_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'MSC')
@@ -130,7 +139,7 @@ setMethod(f = 'filter_SoilSpectra',
         nm2<- 2^c(1:100)
         vs<- ncol(spectra)
         if (sum(nm2 == vs) != 1) {
-          stop("Error: Number of columns in spectra table needs to equal 2^x")
+          stop("Error: Number of columns in spectra table needs to be power of two e.g., 32,64,128,512,1024,2048, etc.")
         }else{
           wave_spectra <- matrix(NA, ncol = 2^res, nrow = nrow(spectra))
           
@@ -144,10 +153,15 @@ setMethod(f = 'filter_SoilSpectra',
             wave_spectra[i, ] <- accessC.wd(wds, level = res)
           }
           
-          wave_spectra<- as.data.frame(wave_spectra)
-          colnames(wave_spectra) <- seq((as.numeric(names(spectra)[1]) + 0.5 * (ncol(spectra)/(2^res))), as.numeric(names(spectra)[length(spectra)]), by = ncol(spectra)/(2^res)) 
         }
-        return(wave_spectra)
+        
+        SoilSpectra@Spectra <- wave_spectra
+        treatmentDetails <- paste0('Wavelet',' res=', res)
+        SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
+        SoilSpectra@Wavelength <- seq((SoilSpectra@Wavelength[1] + 0.5 * (length(SoilSpectra@Wavelength)/(2^res))), rev(SoilSpectra@Wavelength)[1], by = length(SoilSpectra@Wavelength)/(2^res))
+        SoilSpectra@Wavenumber <- round(10000000/SoilSpectra@Wavelength)
+        
+        return(SoilSpectra)
       }
       
       if(type=='C-hull'){

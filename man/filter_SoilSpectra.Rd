@@ -45,6 +45,15 @@ SGolay_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'S-Golay')
 
 plot(SGolay_Spectra[1,350:2500])
 
+
+#Wavelet smoothing
+
+plot(SoilSpectraExample[1,350:2397],ylim=c(0,3))
+
+points(filter_SoilSpectra(SoilSpectraExample[1,350:2397],type = 'Wavelet',res=9),col='red')
+points(filter_SoilSpectra(SoilSpectraExample[1,350:2397],type = 'Wavelet',res=8),col='blue')
+points(filter_SoilSpectra(SoilSpectraExample[1,350:2397],type = 'Wavelet',res=7),col='green')
+
 #Multiplicative scatter correction
 
 MSC_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'MSC')

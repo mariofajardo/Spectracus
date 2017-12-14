@@ -2,21 +2,25 @@
 % Please edit documentation in R/spectra2colour.R
 \name{spectra2colour}
 \alias{spectra2colour}
-\alias{spectra2color}
-\title{Load spectra and extract RGB and Munsell colour}
+\title{Method that extracts RGB and Munsell colour from \code{\link{SoilSpectra}} objects.}
 \usage{
-spectra2colour(spectra, wavelengths, include_id = FALSE)
+spectra2colour(SoilSpectra, ...)
 }
 \arguments{
-\item{spectra}{matrix or data.frame with spectra as rows and wavelengths as columns}
-
-\item{wavelengths}{vector of wavelengths corresponding to the columns of spectra}
-
-\item{include_id}{if TRUE, adds an id column which is simply an integer from \code{1:nrow(spectra)}}
+\item{SoilSpectra}{A \code{\link{SoilSpectra}} object.}
 }
 \description{
 Converts spectra reflectance into RGB and Munsell colours
 }
+\examples{
+\dontrun{
+data("SoilSpectraExample")
+
+spectra2colour(SoilSpectraExample)
+
+spectra2colour(SoilSpectraExample[23]) 
+}
+}
 \author{
-Michael Nelson
+Michael Nelson and Mario Fajardo
 }
