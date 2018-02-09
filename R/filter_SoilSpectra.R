@@ -237,11 +237,11 @@ setMethod(f = 'filter_SoilSpectra',
                 if(nrow(compMat)==1) compMat[, i] <- mean(spectra[, cc:(cc + (window - 1))])
                 else compMat[, i] <- rowMeans(spectra[, cc:(cc + (window - 1))])
                 cc <- cc + window}
-                colab = seq(SoilSpectra@Bands[1],tail(SoilSpectra@Bands)[6], by = window)
+                colab = seq(as.numeric(SoilSpectra@Bands[1]),as.numeric(tail(SoilSpectra@Bands)[6]), by = window)
                 }
           
           SoilSpectra@Spectra <- compMat
-          SoilSpectra@Bands <- colab
+          SoilSpectra@Bands <- as.character(colab)
           treatmentDetails <- paste0('CompSpec',' window=',window)
           SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
           return(SoilSpectra)
