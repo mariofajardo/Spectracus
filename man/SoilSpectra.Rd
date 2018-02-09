@@ -14,17 +14,15 @@ Formal S4 class SoilSpectra
 
 \item{\code{Spectra}}{A numeric matrix which contains absorbance/reflectance soil information}
 
-\item{\code{Wavelength}}{A character vector specifying wavlength names}
+\item{\code{Bands}}{A character vector specifying Band names for the spectra}
 
-\item{\code{Range}}{A character vector section of the electromagnetic spectrum used e.g., Vis-NIR, NIR, MIR, etc.}
-
-\item{\code{Wavenumber}}{A character vector specifying Wavenumber names}
+\item{\code{Units}}{A character vector with the units of each Band.}
 
 \item{\code{Id}}{A character vector specyfing each spectrum Id.}
 
 \item{\code{RowsAreSpectra}}{Logical}
 
-\item{\code{Type}}{character vector specifying if the information is expressed in Absorbance, Reflectance or Modified (Normalized, EPO, etc.) .}
+\item{\code{Type}}{character vector specifying if the information is expressed in Absorbance, Reflectance, Energy or others (Normalized, EPO, etc.) .}
 
 \item{\code{Treatment}}{Spectral Treatments that had being applied to the spectra}
 }}

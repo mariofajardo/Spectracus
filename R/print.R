@@ -17,8 +17,9 @@ setMethod(f = 'print',
           signature(x='SoilSpectra'),
           definition= function(x)
           {
+            
             cat('\n',length(x@ID),' soil observations','\n\n',
-                x@Type,'values ranging from', x@Wavelength[1],' to ',tail(x@Wavelength)[6],'nm in the ',x@Range,'region of the electromagnetic spectrum','\n\n',
+                'Spectra values ranging from ~', round(as.numeric(x@Bands)[1]),' to ',round(tail(as.numeric(x@Bands))[6]),x@Units,'\n\n',
                 'Data type : ',paste(x@Treatments,collapse = '+'),'\n\n',
                 ncol(x@Properties),'associated attributes')
           }

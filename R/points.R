@@ -17,7 +17,7 @@
 setMethod(f = 'points',
           signature(x='SoilSpectra'),
           definition= function(x,...)
-            points(x@Wavelength,
+            points(x@Bands,
                  x@Spectra,
                  ...)
           )

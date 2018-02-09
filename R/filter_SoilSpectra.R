@@ -84,18 +84,17 @@ setMethod(f = 'filter_SoilSpectra',
           signature = 'SoilSpectra',
           definition= function(SoilSpectra,type=NULL,n=11, p=2, m=0,window=1,res=NULL,...)
             {
-    spectra <- SoilSpectra@Spectra
-    specType <- SoilSpectra@Type
-    
-    if(length(type)>1){
-      for(treatment in type){
-        SoilSpectra <- filter_SoilSpectra(SoilSpectra,treatment,n=n, p=p, m=m,window=window)
-      }
-      return(SoilSpectra)
-      
-    }else{
-      
-      if (type =='S-Golay'){
+            spectra <- SoilSpectra@Spectra
+            specType <- SoilSpectra@Type
+            
+            if(length(type)>1){
+              for(treatment in type){
+                SoilSpectra <- filter_SoilSpectra(SoilSpectra,treatment,n=n, p=p, m=m,window=window)
+                }
+              return(SoilSpectra)
+              }else{
+                
+                if (type =='S-Golay'){
         ## run filter
         if(nrow(spectra)>1){
           sg <- t(apply(spectra, 1, sgolayfilt, n = n, p = p, m = m))
@@ -108,8 +107,8 @@ setMethod(f = 'filter_SoilSpectra',
         SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
         return(SoilSpectra)
       }
-      
-      if(type=='MSC') {
+                
+                if(type=='MSC') {
         #first calculate a mean spectrum.
         meanSpec <- colMeans(spectra)
         mscMat <- matrix(NA, ncol = ncol(spectra), nrow = nrow(spectra))
@@ -126,16 +125,16 @@ setMethod(f = 'filter_SoilSpectra',
         SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
         return(SoilSpectra)
       }
-      
-      if(type=='SNV'){
+                
+                if(type=='SNV'){
         snvMat<-(spectra - rowMeans(spectra))/apply(spectra,1,sd)
         SoilSpectra@Spectra <- snvMat
         treatmentDetails <- 'SNV'
         SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
         return(SoilSpectra)
       }
-      
-      if(type=='Wavelet'){
+                
+                if(type=='Wavelet'){
         nm2<- 2^c(1:100)
         vs<- ncol(spectra)
         if (sum(nm2 == vs) != 1) {
@@ -158,13 +157,13 @@ setMethod(f = 'filter_SoilSpectra',
         SoilSpectra@Spectra <- wave_spectra
         treatmentDetails <- paste0('Wavelet',' res=', res)
         SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
-        SoilSpectra@Wavelength <- seq((SoilSpectra@Wavelength[1] + 0.5 * (length(SoilSpectra@Wavelength)/(2^res))), rev(SoilSpectra@Wavelength)[1], by = length(SoilSpectra@Wavelength)/(2^res))
-        SoilSpectra@Wavenumber <- round(10000000/SoilSpectra@Wavelength)
+        SoilSpectra@Bands <- as.character(seq((as.numeric(SoilSpectra@Bands[1]) + 0.5 * (length(SoilSpectra@Bands)/(2^res))), as.numeric(rev(SoilSpectra@Bands)[1]), by = length(SoilSpectra@Bands)/(2^res)))
+        
         
         return(SoilSpectra)
       }
-      
-      if(type=='C-hull'){
+                
+                if(type=='C-hull'){
         c_hull.fix<- function(c_hull){
           cc<-c_hull
           xs<-which(cc == 1)
@@ -225,8 +224,8 @@ setMethod(f = 'filter_SoilSpectra',
         SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
         return(SoilSpectra)
       }
-      
-      if(type=='CompSpec'){
+                
+                if(type=='CompSpec'){
         
           if(ncol(spectra)%%window != 0){stop("Error: Pick a more compatable window size, the window needs to be a divisor of ",length(SoilSpectra@Wavelength, "(total number of bands)"))
             
@@ -238,21 +237,20 @@ setMethod(f = 'filter_SoilSpectra',
                 if(nrow(compMat)==1) compMat[, i] <- mean(spectra[, cc:(cc + (window - 1))])
                 else compMat[, i] <- rowMeans(spectra[, cc:(cc + (window - 1))])
                 cc <- cc + window}
-                colab = seq(SoilSpectra@Wavelength[1],tail(SoilSpectraExample@Wavelength)[6], by = window)
+                colab = seq(SoilSpectra@Bands[1],tail(SoilSpectra@Bands)[6], by = window)
                 }
           
           SoilSpectra@Spectra <- compMat
-          SoilSpectra@Wavelength <- colab
-          SoilSpectra@Wavenumber <- round(10000000/SoilSpectra@Wavelength)
+          SoilSpectra@Bands <- colab
           treatmentDetails <- paste0('CompSpec',' window=',window)
           SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
           return(SoilSpectra)
-        }
-      }
-
-
-          }
-) 
+                }
+                
+              }
+            
+            }
+      ) 
     
 
 

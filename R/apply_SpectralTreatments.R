@@ -27,7 +27,8 @@ setMethod(f = 'apply_SpectralTreatments',
           signature('SoilSpectra'),
           definition= function(SoilSpectra_A,SoilSpectra_B)
           {
-            TransformedSpectra <- filter_SoilSpectra(SoilSpectra_A,SoilSpectra_B@Treatments)
+            type <- gsub('(?<=\\s)[[:print:]]+','',SoilSpectra_B@Treatments, perl=T)
+            TransformedSpectra <- filter_SoilSpectra(SoilSpectra_A,type = type)
             return(TransformedSpectra)
           }
 ) 
