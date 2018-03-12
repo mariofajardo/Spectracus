@@ -1,5 +1,6 @@
 #' Formal S4 class SoilSpectra
 #' 
+#' @slot Meta A character vector with dataset details
 #' @slot Instrument A character vector specifying de name of the Instrument where the spectram was obtained 
 #' @slot Spectra A numeric matrix which contains absorbance/reflectance soil information 
 #' @slot Bands A character vector specifying Band names for the spectra
@@ -14,7 +15,8 @@
 #' @author Mario Fajardo, Brendan Malone, Budiman Minasny and Edward Jones.
 
 setClass(Class = 'SoilSpectra',
-         slots=c(Instrument='character',
+         slots=c(Meta='character',
+                 Instrument='character',
                  Spectra='matrix',
                  Bands='character',
                  Units='character',
