@@ -17,6 +17,7 @@ setMethod(f = "[",
             if(is.logical(j))   logic_j <- j
             
             initialize(x,
+                      Meta=x@Meta,
                       Instrument=x@Instrument,
                       Spectra=if(length(i)>1){
                         
