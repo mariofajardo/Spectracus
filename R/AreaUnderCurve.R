@@ -205,7 +205,7 @@ setMethod(f = 'AreaUnderCurve',
             names(result) <- SoilSpectra@ID
 
             hullSpectra <- initialize(SoilSpectra,
-                                      Meta=x@Meta,
+                                      Meta=SoilSpectra@Meta,
                                       Instrument=SoilSpectra@Instrument,
                                       Spectra=do.call(rbind,lapply(result,function(x) x$c.hull)),
                                       Bands=SoilSpectra@Bands,
@@ -217,7 +217,7 @@ setMethod(f = 'AreaUnderCurve',
                                       Treatments=SoilSpectra@Treatments)
             
             rawSpectra <- initialize(SoilSpectra,
-                                     Meta=x@Meta,
+                                     Meta=SoilSpectra@Meta,
                                       Instrument=SoilSpectra@Instrument,
                                       Spectra=do.call(rbind,lapply(result,function(x) x$raw.spec)),
                                       Bands=SoilSpectra@Bands,
@@ -229,7 +229,7 @@ setMethod(f = 'AreaUnderCurve',
                                       Treatments=SoilSpectra@Treatments)
             
             contSpectra <- initialize(SoilSpectra,
-                                      Meta=x@Meta,
+                                      Meta=SoilSpectra@Meta,
                                      Instrument=SoilSpectra@Instrument,
                                      Spectra=do.call(rbind,lapply(result,function(x) x$continuum)),
                                      Bands=SoilSpectra@Bands,

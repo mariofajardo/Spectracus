@@ -72,7 +72,7 @@ setMethod(f = 'spectra2colour',
   
   
   ## find r,g,b colour
-  rgb_colours <- adply(spectra, 1, spectra_to_RGB, all_wavelengths = SoilSpectra@Wavelength,.id = NULL)
+  rgb_colours <- adply(spectra, 1, spectra_to_RGB, all_wavelengths = SoilSpectra@Bands,.id = NULL)
   ##
   ## get munsell colour
   munsell_colours <- splat(function(red,green,blue, ...){rgb2mnsl(R=red,G=green,B=blue)})(rgb_colours)

@@ -10,6 +10,8 @@ Formal S4 class SoilSpectra
 \section{Slots}{
 
 \describe{
+\item{\code{Meta}}{A character vector with dataset details}
+
 \item{\code{Instrument}}{A character vector specifying de name of the Instrument where the spectram was obtained}
 
 \item{\code{Spectra}}{A numeric matrix which contains absorbance/reflectance soil information}
