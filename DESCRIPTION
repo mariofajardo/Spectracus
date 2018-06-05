@@ -30,3 +30,21 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
+Collate: 
+    'AreaUnderCurve.R'
+    'SoilSpectra.R'
+    'apply_SpectralTreatments.R'
+    'compSpec.R'
+    'epo.R'
+    'filter_SoilSpectra.R'
+    'fit_bag_plsr.R'
+    'goof.R'
+    'munsell_treemap.R'
+    'plot.R'
+    'points.R'
+    'predict_bag_plsr.R'
+    'print.R'
+    'show.R'
+    'spectra2colour.R'
+    'spectroscopy-internal.R'
+    'subset.R'

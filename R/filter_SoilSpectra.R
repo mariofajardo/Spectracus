@@ -20,6 +20,7 @@
 #' @param If type is a character vector with more than one filter type the method will apply all the filters in the order they are specified. Extra parameters will be passed to ...=
 #' @importFrom signal sgolayfilt
 #' @importFrom signal sgolayfilt
+#' @importFrom prospectr spliceCorrection
 #' @importFrom wavethresh wd accessC.wd
 #' @references Savitzky, Abraham and Golay, M. J. E. (1964) Smoothing and Differentiation of Data by Simplified Least Squares Procedures, Analytical Chemistry, 36, pp. 1627-1629.
 #' @author Mario Fajardo, Brendan Malone, Budiman Minasny, Michael Nelson, Sebastian Campbell.
@@ -74,7 +75,7 @@
 
 
 setGeneric("filter_SoilSpectra",
-           function(SoilSpectra,type,n=11, p=2, m=0,window=NULL,res=NULL,...)
+           function(SoilSpectra,type,n=11, p=2, m=0,window=NULL,res=NULL,X = NULL,wav = NULL,splice = NULL,interpol.bands = NULL)
              {
              standardGeneric('filter_SoilSpectra')
              }
@@ -82,19 +83,20 @@ setGeneric("filter_SoilSpectra",
 
 setMethod(f = 'filter_SoilSpectra',
           signature = 'SoilSpectra',
-          definition= function(SoilSpectra,type=NULL,n=11, p=2, m=0,window=1,res=NULL,...)
+          definition= function(SoilSpectra,type=NULL,n=11, p=2, m=0,window=1,res=NULL,X,wav,splice=c(1000,1830),interpol.bands=10)
             {
             spectra <- SoilSpectra@Spectra
             specType <- SoilSpectra@Type
             
             if(length(type)>1){
               for(treatment in type){
-                SoilSpectra <- filter_SoilSpectra(SoilSpectra,treatment,n=n, p=p, m=m,window=window)
+                SoilSpectra <- filter_SoilSpectra(SoilSpectra,treatment,n=n, p=p, m=m,window=window,X = X,wav = wav,splice = splice,interpol.bands = interpol.bands)
                 }
               return(SoilSpectra)
               }else{
                 
-                if (type =='S-Golay'){
+                if (type =='S-Golay')
+                  {
         ## run filter
         if(nrow(spectra)>1){
           sg <- t(apply(spectra, 1, sgolayfilt, n = n, p = p, m = m))
@@ -108,7 +110,8 @@ setMethod(f = 'filter_SoilSpectra',
         return(SoilSpectra)
       }
                 
-                if(type=='MSC') {
+                if(type=='MSC') 
+                  {
         #first calculate a mean spectrum.
         meanSpec <- colMeans(spectra)
         mscMat <- matrix(NA, ncol = ncol(spectra), nrow = nrow(spectra))
@@ -126,7 +129,8 @@ setMethod(f = 'filter_SoilSpectra',
         return(SoilSpectra)
       }
                 
-                if(type=='SNV'){
+                if(type=='SNV')
+                  {
         snvMat<-(spectra - rowMeans(spectra))/apply(spectra,1,sd)
         SoilSpectra@Spectra <- snvMat
         treatmentDetails <- 'SNV'
@@ -134,7 +138,8 @@ setMethod(f = 'filter_SoilSpectra',
         return(SoilSpectra)
       }
                 
-                if(type=='Wavelet'){
+                if(type=='Wavelet')
+                  {
         nm2<- 2^c(1:100)
         vs<- ncol(spectra)
         if (sum(nm2 == vs) != 1) {
@@ -163,7 +168,8 @@ setMethod(f = 'filter_SoilSpectra',
         return(SoilSpectra)
       }
                 
-                if(type=='C-hull'){
+                if(type=='C-hull')
+                  {
         c_hull.fix<- function(c_hull){
           cc<-c_hull
           xs<-which(cc == 1)
@@ -225,9 +231,10 @@ setMethod(f = 'filter_SoilSpectra',
         return(SoilSpectra)
       }
                 
-                if(type=='CompSpec'){
+                if(type=='CompSpec')
+                  {
         
-          if(ncol(spectra)%%window != 0){stop("Error: Pick a more compatable window size, the window needs to be a divisor of ",length(SoilSpectra@Wavelength, "(total number of bands)"))
+          if(ncol(spectra)%%window != 0){stop("Error: Pick a more compatable window size, the window needs to be a divisor of ",length(SoilSpectra@Bands), "(total number of bands)")
             
             } else {
               compMat <- matrix(NA, ncol = (ncol(spectra))/window, nrow = nrow(spectra))
@@ -245,6 +252,34 @@ setMethod(f = 'filter_SoilSpectra',
           treatmentDetails <- paste0('CompSpec',' window=',window)
           SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
           return(SoilSpectra)
+                }
+                
+                if(type=='toAbsorbance')
+                {
+                  if(SoilSpectra@Type=='Reflectance'){
+                    SoilSpectra@Spectra <- log(1/SoilSpectra@Spectra)
+                    SoilSpectra@Type <- 'Absorbance'
+                    return(SoilSpectra)
+                    }
+                    
+                }
+                
+                if(type=='toReflectance')
+                {
+                  if(SoilSpectra@Type=='Absorbance'){
+                    SoilSpectra@Spectra <- log(1/SoilSpectra@Spectra)
+                    SoilSpectra@Type <- 'Reflectance'
+                    return(SoilSpectra)
+                  }
+                  
+                }
+                if(type=='Splice')
+                {
+                  
+                  SoilSpectra@Spectra <- spliceCorrection(X = SoilSpectra@Spectra,wav = as.numeric(SoilSpectra@Bands),splice = splice,interpol.bands = interpol.bands)
+                  treatmentDetails <- 'SpliceCorrection'
+                  SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
+                  return(SoilSpectra)
                 }
                 
               }
