@@ -5,7 +5,8 @@
 \title{Filtering methods for SoilSpectra objects}
 \usage{
 filter_SoilSpectra(SoilSpectra, type, n = 11, p = 2, m = 0,
-  window = NULL, res = NULL, ...)
+  window = NULL, res = NULL, X = NULL, wav = NULL, splice = NULL,
+  interpol.bands = NULL)
 }
 \arguments{
 \item{SoilSpectra}{Object of class \code{\link{SoilSpectra}}.}
