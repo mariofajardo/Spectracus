@@ -260,11 +260,12 @@ setMethod(f = 'filter_SoilSpectra',
                     SoilSpectra@Spectra <- log(1/SoilSpectra@Spectra)
                     SoilSpectra@Type <- 'Absorbance'
                     return(SoilSpectra)
+
                   }else{
                     return(SoilSpectra)  
-                    }
+
                     
-                }
+                }}
                 
                 if(type=='toReflectance')
                 {
@@ -272,11 +273,14 @@ setMethod(f = 'filter_SoilSpectra',
                     SoilSpectra@Spectra <- log(1/SoilSpectra@Spectra)
                     SoilSpectra@Type <- 'Reflectance'
                     return(SoilSpectra)
+
                   }else{
                     return(SoilSpectra)  
+
                   }
                   
                 }
+                  
                 if(type=='Splice')
                 {
                   
