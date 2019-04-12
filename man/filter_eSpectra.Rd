@@ -39,47 +39,47 @@ depending on the value of 'type':
 data("eSpectraExample")
 
 
-plot(eSpectraExample[1,350:2500]) 
+plot(eSpectraExample[1,]) 
 
 #Savitsky-Golay filter
 SGolay_Spectra <- filter_eSpectra(eSpectraExample,type = 'S-Golay')
 
-plot(SGolay_Spectra[1,350:2500])
+plot(SGolay_Spectra[1,])
 
 
 #Wavelet smoothing
 
 plot(eSpectraExample[1,350:2397],ylim=c(0,3))
 
-points(filter_eSpectra(eSpectraExample[1,350:2397],type = 'Wavelet',res=9),col='red')
-points(filter_eSpectra(eSpectraExample[1,350:2397],type = 'Wavelet',res=8),col='blue')
-points(filter_eSpectra(eSpectraExample[1,350:2397],type = 'Wavelet',res=7),col='green')
+points(filter_eSpectra(eSpectraExample[1,as.character(350:2397)],type = 'Wavelet',res=9),col='red')
+points(filter_eSpectra(eSpectraExample[1,as.character(350:2397)],type = 'Wavelet',res=8),col='blue')
+points(filter_eSpectra(eSpectraExample[1,as.character(350:2397)],type = 'Wavelet',res=7),col='green')
 
 #Multiplicative scatter correction
 
 MSC_Spectra <- filter_eSpectra(eSpectraExample,type = 'MSC')
 
-plot(MSC_Spectra[1,350:2500])
- 
+plot(MSC_Spectra[1,])
+
 #Standard Normal Variate transform
 
 SNV_Spectra <- filter_eSpectra(eSpectraExample,type = 'SNV')
 
-plot(SNV_Spectra[1,350:2500])
+plot(SNV_Spectra[1,])
 
 
 #Convex-hull transform
 
 CHull_Spectra <- filter_eSpectra(eSpectraExample,type = 'C-hull')
 
-plot(CHull_Spectra[1,350:2500])
+plot(CHull_Spectra[1,])
 
 #CompSpec reduction
 
 CompSpec_Spectra <- filter_eSpectra(eSpectraExample,type = 'CompSpec',window=9)
 
-plot(eSpectraExample[1,350:2500])
-points(CompSpec_Spectra[1,350:2500],col='red',lwd=2)
+plot(eSpectraExample[1,])
+points(CompSpec_Spectra[1,],col='red',lwd=2)
 }
 }
 \references{

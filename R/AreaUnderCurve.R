@@ -15,6 +15,7 @@
 #' @importFrom plyr splat
 #' @importFrom plyr llply
 #' @importFrom munsell rgb2mnsl
+#' @importFrom splancs areapl
 #' 
 #' 
 #' @author Mario Fajardo and Brendan Malone

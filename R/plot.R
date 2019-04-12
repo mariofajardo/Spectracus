@@ -10,7 +10,7 @@
 #' \dontrun{
 #' data("eSpectraExample")
 #' plot(eSpectraExample)
-#' plot(eSpectraExample,type='l')
+#' plot(eSpectraExample)
 #' }
 
 

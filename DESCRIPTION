@@ -36,7 +36,6 @@ Collate:
     'AreaUnderCurve.R'
     'eSpectra.R'
     'apply_SpectralTreatments.R'
-    'compSpec.R'
     'epo.R'
     'filter_eSpectra.R'
     'fit_bag_plsr.R'
