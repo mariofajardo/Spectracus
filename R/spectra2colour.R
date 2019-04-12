@@ -1,4 +1,4 @@
-#' Method that extracts RGB and Munsell colour from \code{\link{SoilSpectra}} objects.
+#' Method that extracts RGB and Munsell colour from \code{\link{eSpectra}} objects.
 #' 
 #' Converts spectra reflectance into RGB and Munsell colours
 #' @importFrom plyr adply
@@ -6,28 +6,28 @@
 #' @importFrom plyr llply
 #' @importFrom munsell rgb2mnsl
 #' 
-#' @param SoilSpectra A \code{\link{SoilSpectra}} object.
+#' @param eSpectra A \code{\link{eSpectra}} object.
 #' 
 #' @exportMethod spectra2colour
 #' @author Michael Nelson and Mario Fajardo
 #' @examples 
 #' \dontrun{
-#' data("SoilSpectraExample")
+#' data("eSpectraExample")
 #' 
-#' spectra2colour(SoilSpectraExample)
+#' spectra2colour(eSpectraExample)
 #' 
-#' spectra2colour(SoilSpectraExample[23]) 
+#' spectra2colour(eSpectraExample[23]) 
 #' }
 setGeneric("spectra2colour",
-           function(SoilSpectra,...)
+           function(eSpectra,...)
            {
              standardGeneric('spectra2colour')
            }
 )
 
 setMethod(f = 'spectra2colour',
-          signature = 'SoilSpectra',
-          definition= function(SoilSpectra,...){
+          signature = 'eSpectra',
+          definition= function(eSpectra,...){
             
             #Internal Functions
             spectra_to_RGB <- function(.spectra, 
@@ -66,19 +66,19 @@ setMethod(f = 'spectra2colour',
             
             ##End of internal functions
             
-            spectra <- SoilSpectra@Spectra
+            spectra <- eSpectra@Spectra
   
   
   
   
   ## find r,g,b colour
-  rgb_colours <- adply(spectra, 1, spectra_to_RGB, all_wavelengths = SoilSpectra@Bands,.id = NULL)
+  rgb_colours <- adply(spectra, 1, spectra_to_RGB, all_wavelengths = eSpectra@Bands,.id = NULL)
   ##
   ## get munsell colour
   munsell_colours <- splat(function(red,green,blue, ...){rgb2mnsl(R=red,G=green,B=blue)})(rgb_colours)
   ##
   ## return
-  soil_colours <- data.frame(ID=SoilSpectra@ID,rgb_colours, munsell = munsell_colours)
+  soil_colours <- data.frame(ID=eSpectra@ID,rgb_colours, munsell = munsell_colours)
   
   return(soil_colours)
           }

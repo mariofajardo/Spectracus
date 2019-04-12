@@ -1,3 +1,9 @@
+Spectracus 0.6
+
+* Package name changed to Spectracus
+* Class SoilSpectra renamed to eSpectra
+
+
 spectroscopy 0.5
 
 * chBLC_ext function added

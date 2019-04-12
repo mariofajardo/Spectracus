@@ -4,20 +4,20 @@
 \alias{AreaUnderCurve}
 \title{Spectra normalisation via continuum estimation}
 \usage{
-AreaUnderCurve(SoilSpectra, AUC = TRUE, ...)
+AreaUnderCurve(eSpectra, AUC = TRUE, ...)
 }
 \arguments{
-\item{AUC}{A logical that is expressed as the Area Under the Curve (AUC) or Over the Curve is desired, default is set to TRUE i.e., AUC}
+\item{eSpectra}{Object of class \code{\link{eSpectra}}.}
 
-\item{Spectra}{A \code{\link{SoilSpectra}} object.}
+\item{AUC}{A logical that is expressed as the Area Under the Curve (AUC) or Over the Curve is desired, default is set to TRUE i.e., AUC}
 }
 \value{
 Returns a list with 8 elements:
 \itemize{
-\item{hull}{ A \code{\link{SoilSpectra}} object with hull spectra (equivalent to \code{\link{filterSpectra}} output)}
-\item{raw}{ A \code{\link{SoilSpectra}} object with the input spectra}
+\item{hull}{ A \code{\link{eSpectra}} object with hull spectra (equivalent to \code{\link{filter_eSpectra}} output)}
+\item{raw}{ A \code{\link{eSpectra}} object with the input spectra}
 \item{polygons}{ Vertices for constructing the polygons of each normalised spectral feature}
-\item{contSpectra} {A \code{\link{SoilSpectra}} object with the Continuum removed spectra}
+\item{contSpectra} {A \code{\link{eSpectra}} object with the Continuum removed spectra}
 \item{areas}{ areas of the polygons}
 \item{depths}{ difference between the highest reflectance/absorbance and the lower of each polygon}
 \item{slopes}{ slopes between the highest reflectance/absorbance and the lower of each polygon}
@@ -38,16 +38,16 @@ Selecting the convex hull features in the right order has been an ongoing teethi
 }
 \examples{
 \dontrun{
-data("SoilSpectraExample")
+data("eSpectraExample")
 #Select a specific area
-SelectedArea <- SoilSpectraExample[122:123,1950:2220]
+SelectedArea <- eSpectraExample[122:123,1950:2220]
 
 
 #Run the continuum fitting function for Area Under the Curve
 spec.CR<- AreaUnderCurve(SelectedArea,AUC=T)
 
 
-plot(SoilSpectraExample[122:123,])
+plot(eSpectraExample[122:123,])
 points(spec.CR$raw[1],col='blue',type='l',lwd=2)
 points(spec.CR$raw[2],col='red',type='l',lwd=2)
 
@@ -71,12 +71,12 @@ spec.CR$depths
 
 
 #Run the continuum fitting function for Area Over the curve
-SelectedArea <- SoilSpectraExample[122:123,2180:2230]
+SelectedArea <- eSpectraExample[122:123,2180:2230]
 
 spec.CR<- AreaUnderCurve(SelectedArea,AUC=F)
 
 
-plot(SoilSpectraExample[122:123,])
+plot(eSpectraExample[122:123,])
 points(spec.CR$raw[1],col='blue',type='l',lwd=2)
 points(spec.CR$raw[2],col='red',type='l',lwd=2)
 

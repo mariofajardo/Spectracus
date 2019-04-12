@@ -1,6 +1,6 @@
 #' Reduce column dimensions
 #' 
-#' This function reduces the dimensions of a SoilSpectra by averaging values inside a window of a specified size
+#' This function reduces the dimensions of a eSpectra by averaging values inside a window of a specified size
 #' 
 #' 
 #' @param spectra matrix where each row is a spectrum and each column a wavelength

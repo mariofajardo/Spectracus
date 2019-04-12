@@ -12,7 +12,7 @@ compSpec(spectra, window)
 \item{window}{window size over which the spectra will be averaged}
 }
 \description{
-This function reduces the dimensions of a SoilSpectra by averaging values inside a window of a specified size
+This function reduces the dimensions of a eSpectra by averaging values inside a window of a specified size
 }
 \examples{
 #load data

@@ -1,20 +1,20 @@
-#' print method for SoilSpectra objects
+#' print method for eSpectra objects
 #' 
 #' This method generates a description for a Spectra Object
 #' @rdname  print
-#' @param SoilSpectra Object of class \code{\link{SoilSpectra}}.
+#' @param eSpectra Object of class \code{\link{eSpectra}}.
 #' @author Mario Fajardo.
 #' @exportMethod   print
 #' @examples  
 #' \dontrun{
-#' data("SoilSpectraExample")
-#' print(SoilSpectraExample)
+#' data("eSpectraExample")
+#' print(eSpectraExample)
 #' }
 
 
 
 setMethod(f = 'print',
-          signature(x='SoilSpectra'),
+          signature(x='eSpectra'),
           definition= function(x)
           {
             

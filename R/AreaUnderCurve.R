@@ -15,18 +15,17 @@
 #' @importFrom plyr splat
 #' @importFrom plyr llply
 #' @importFrom munsell rgb2mnsl
-#' @importFrom splancs areapl
 #' 
 #' 
-#' 
-#' @param Spectra A \code{\link{SoilSpectra}} object.
+#' @author Mario Fajardo and Brendan Malone
+#' @param eSpectra Object of class \code{\link{eSpectra}}.
 #' @param AUC A logical that is expressed as the Area Under the Curve (AUC) or Over the Curve is desired, default is set to TRUE i.e., AUC
 #' @return Returns a list with 8 elements:
 #' \itemize{
-#' \item{hull}{ A \code{\link{SoilSpectra}} object with hull spectra (equivalent to \code{\link{filterSpectra}} output)}
-#' \item{raw}{ A \code{\link{SoilSpectra}} object with the input spectra}
+#' \item{hull}{ A \code{\link{eSpectra}} object with hull spectra (equivalent to \code{\link{filter_eSpectra}} output)}
+#' \item{raw}{ A \code{\link{eSpectra}} object with the input spectra}
 #' \item{polygons}{ Vertices for constructing the polygons of each normalised spectral feature}
-#' \item{contSpectra} {A \code{\link{SoilSpectra}} object with the Continuum removed spectra}
+#' \item{contSpectra} {A \code{\link{eSpectra}} object with the Continuum removed spectra}
 #' \item{areas}{ areas of the polygons}
 #' \item{depths}{ difference between the highest reflectance/absorbance and the lower of each polygon}
 #' \item{slopes}{ slopes between the highest reflectance/absorbance and the lower of each polygon}
@@ -34,16 +33,16 @@
 #' }
 #' @examples 
 #' \dontrun{
-#' data("SoilSpectraExample")
+#' data("eSpectraExample")
 #' #Select a specific area
-#' SelectedArea <- SoilSpectraExample[122:123,1950:2220]
+#' SelectedArea <- eSpectraExample[122:123,1950:2220]
 #' 
 #' 
 #' #Run the continuum fitting function for Area Under the Curve
 #' spec.CR<- AreaUnderCurve(SelectedArea,AUC=T)
 #' 
 #' 
-#' plot(SoilSpectraExample[122:123,])
+#' plot(eSpectraExample[122:123,])
 #' points(spec.CR$raw[1],col='blue',type='l',lwd=2)
 #' points(spec.CR$raw[2],col='red',type='l',lwd=2)
 #' 
@@ -67,12 +66,12 @@
 #' 
 #' 
 #' #Run the continuum fitting function for Area Over the curve
-#' SelectedArea <- SoilSpectraExample[122:123,2180:2230]
+#' SelectedArea <- eSpectraExample[122:123,2180:2230]
 #' 
 #' spec.CR<- AreaUnderCurve(SelectedArea,AUC=F)
 #' 
 #' 
-#' plot(SoilSpectraExample[122:123,])
+#' plot(eSpectraExample[122:123,])
 #' points(spec.CR$raw[1],col='blue',type='l',lwd=2)
 #' points(spec.CR$raw[2],col='red',type='l',lwd=2)
 #' 
@@ -93,24 +92,24 @@
 #' }
 #' 
 #' @exportMethod  AreaUnderCurve
-#' @author Mario Fajardo and Brendan Malone
+
 
 
 
 setGeneric("AreaUnderCurve",
-           function(SoilSpectra,AUC=TRUE,...)
+           function(eSpectra,AUC=TRUE,...)
            {
              standardGeneric('AreaUnderCurve')
            }
 )
 
 setMethod(f = 'AreaUnderCurve',
-          signature = 'SoilSpectra',
-          definition= function(SoilSpectra,AUC=TRUE,...)
+          signature = 'eSpectra',
+          definition= function(eSpectra,AUC=TRUE,...)
             {
             
-            spectra <- SoilSpectra@Spectra
-            interval <- SoilSpectra@Bands
+            spectra <- eSpectra@Spectra
+            interval <- eSpectra@Bands
             
             
             result <- apply(spectra,1,function(tempSpectrum) {
@@ -202,50 +201,50 @@ setMethod(f = 'AreaUnderCurve',
                              slope=slope_feature,
                              warnFlag=WarnFlag)
               })
-            names(result) <- SoilSpectra@ID
+            names(result) <- eSpectra@ID
 
-            hullSpectra <- initialize(SoilSpectra,
-                                      Meta=SoilSpectra@Meta,
-                                      Instrument=SoilSpectra@Instrument,
+            hullSpectra <- initialize(eSpectra,
+                                      Meta=eSpectra@Meta,
+                                      Instrument=eSpectra@Instrument,
                                       Spectra=do.call(rbind,lapply(result,function(x) x$c.hull)),
-                                      Bands=SoilSpectra@Bands,
-                                      Units=SoilSpectra@Units,
-                                      RowsAreSpectra=SoilSpectra@RowsAreSpectra,
-                                      Type=SoilSpectra@Type,
-                                      ID=SoilSpectra@ID,
-                                      Properties=SoilSpectra@Properties,
-                                      Treatments=SoilSpectra@Treatments)
+                                      Bands=eSpectra@Bands,
+                                      Units=eSpectra@Units,
+                                      RowsAreSpectra=eSpectra@RowsAreSpectra,
+                                      Type=eSpectra@Type,
+                                      ID=eSpectra@ID,
+                                      Properties=eSpectra@Properties,
+                                      Treatments=eSpectra@Treatments)
             
-            rawSpectra <- initialize(SoilSpectra,
-                                     Meta=SoilSpectra@Meta,
-                                      Instrument=SoilSpectra@Instrument,
+            rawSpectra <- initialize(eSpectra,
+                                     Meta=eSpectra@Meta,
+                                      Instrument=eSpectra@Instrument,
                                       Spectra=do.call(rbind,lapply(result,function(x) x$raw.spec)),
-                                      Bands=SoilSpectra@Bands,
-                                      Units=SoilSpectra@Units,
-                                      RowsAreSpectra=SoilSpectra@RowsAreSpectra,
-                                      Type=SoilSpectra@Type,
-                                      ID=SoilSpectra@ID,
-                                      Properties=SoilSpectra@Properties,
-                                      Treatments=SoilSpectra@Treatments)
+                                      Bands=eSpectra@Bands,
+                                      Units=eSpectra@Units,
+                                      RowsAreSpectra=eSpectra@RowsAreSpectra,
+                                      Type=eSpectra@Type,
+                                      ID=eSpectra@ID,
+                                      Properties=eSpectra@Properties,
+                                      Treatments=eSpectra@Treatments)
             
-            contSpectra <- initialize(SoilSpectra,
-                                      Meta=SoilSpectra@Meta,
-                                     Instrument=SoilSpectra@Instrument,
+            contSpectra <- initialize(eSpectra,
+                                      Meta=eSpectra@Meta,
+                                     Instrument=eSpectra@Instrument,
                                      Spectra=do.call(rbind,lapply(result,function(x) x$continuum)),
-                                     Bands=SoilSpectra@Bands,
-                                     Units=SoilSpectra@Units,
-                                     RowsAreSpectra=SoilSpectra@RowsAreSpectra,
-                                     Type=SoilSpectra@Type,
-                                     ID=SoilSpectra@ID,
-                                     Properties=SoilSpectra@Properties,
-                                     Treatments=SoilSpectra@Treatments)
+                                     Bands=eSpectra@Bands,
+                                     Units=eSpectra@Units,
+                                     RowsAreSpectra=eSpectra@RowsAreSpectra,
+                                     Type=eSpectra@Type,
+                                     ID=eSpectra@ID,
+                                     Properties=eSpectra@Properties,
+                                     Treatments=eSpectra@Treatments)
             
             polygons <- lapply(result,function(x) x$polygon)
             
             areas <- do.call(c,lapply(result,function(x) x$area))
             
             slopes <- do.call(c,lapply(result,function(x) x$slope))
-            names(slopes) <- SoilSpectra@ID
+            names(slopes) <- eSpectra@ID
             
             depths <- do.call(c,lapply(result,function(x) x$depth))
             

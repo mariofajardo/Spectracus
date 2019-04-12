@@ -1,21 +1,21 @@
-#' plot method for SoilSpectra objects
+#' plot method for eSpectra objects
 #' 
-#' This method generates a plot.SoilSpectra for a Spectra Object
+#' This method generates a plot.eSpectra for a Spectra Object
 #' @rdname  plot
-#' @param SoilSpectra Object of class \code{\link{SoilSpectra}}.
+#' @param eSpectra Object of class \code{\link{eSpectra}}.
 #' @param ID numeric or character vector with ID of spectra to plot (default=1).
 #' @author Mario Fajardo.
 #' @exportMethod plot
 #' @examples  
 #' \dontrun{
-#' data("SoilSpectraExample")
-#' plot(SoilSpectraExample)
-#' plot(SoilSpectraExample,type='l')
+#' data("eSpectraExample")
+#' plot(eSpectraExample)
+#' plot(eSpectraExample,type='l')
 #' }
 
 
 setMethod(f = 'plot',
-          signature(x='SoilSpectra'),
+          signature(x='eSpectra'),
           definition= function(x,...)
           {if(nrow(x@Spectra)==1){
             plot(x@Bands,

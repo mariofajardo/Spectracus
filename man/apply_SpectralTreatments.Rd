@@ -2,23 +2,23 @@
 % Please edit documentation in R/apply_SpectralTreatments.R
 \name{apply_SpectralTreatments}
 \alias{apply_SpectralTreatments}
-\title{Filtering methods for SoilSpectra objects}
+\title{Filtering methods for eSpectra objects}
 \usage{
-apply_SpectralTreatments(SoilSpectra_A, SoilSpectra_B)
+apply_SpectralTreatments(eSpectra_A, eSpectra_B)
 }
 \arguments{
-\item{SoilSpectra_A}{Object of class \code{\link{SoilSpectra}}.}
+\item{eSpectra_A}{Object of class \code{\link{eSpectra}}.}
 
-\item{SoilSpectra_B}{}
+\item{eSpectra_B}{}
 }
 \description{
-This method applies spectral pretreatments from a class \code{\link{SoilSpectra}} object 'A' to another \code{\link{SoilSpectra}} object 'B'
+This method applies spectral pretreatments from a class \code{\link{eSpectra}} object 'A' to another \code{\link{eSpectra}} object 'B'
 }
 \examples{
 \dontrun{
-data("SoilSpectraExample")
-filteredSpectra <- filter_SoilSpectra(SoilSpectraExample,c('SNV','C-hull'))
-result <- apply_SpectralTreatments(SoilSpectraExample,filteredSpectra)
+data("eSpectraExample")
+filteredSpectra <- filter_eSpectra(eSpectraExample,c('SNV','C-hull'))
+result <- apply_SpectralTreatments(eSpectraExample,filteredSpectra)
 
 result
 }

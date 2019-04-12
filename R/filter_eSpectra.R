@@ -1,9 +1,9 @@
-#' Filtering methods for SoilSpectra objects
+#' Filtering methods for eSpectra objects
 #' 
 #' This method calls different filters on matrices in which each row is a separate spectrum
 #' depending on the value of 'type':
-#' @rdname  filter_SoilSpectra
-#' @param SoilSpectra Object of class \code{\link{SoilSpectra}}.
+#' @rdname  filter_eSpectra
+#' @param eSpectra Object of class \code{\link{eSpectra}}.
 #' @param type  
 #' \itemize{
 #' \item 'S-Golay' for Sativsky Golay filter using \code{\link{sgolayfilt}},
@@ -11,7 +11,7 @@
 #' \item 'MSC' for Multiplicative scatter correction, 
 #' \item 'SNV' for Standard Normal Variate transformation.
 #' \item 'C-hull' for Continuum removal by removing the convex hull
-#' \item 'CompSpec' for reducing dimensions of a SoilSpectra by averaging values inside a window of a specified size
+#' \item 'CompSpec' for reducing dimensions of a eSpectra by averaging values inside a window of a specified size
 #' }
 #' @param If type = 'S-Golay' then n,p and m parameters control \code{\link{sgolayfilt}} window size, polynomial order and derivative order respectively.
 #' @param If type = 'Wavelet' res level to be extracted from wavelet decomposition model, see \code{\link{accessC.wd}}
@@ -26,73 +26,73 @@
 #' @author Mario Fajardo, Brendan Malone, Budiman Minasny, Michael Nelson, Sebastian Campbell.
 #' @examples 
 #' \dontrun{
-#' data("SoilSpectraExample")
+#' data("eSpectraExample")
 #' 
 #' 
-#' plot(SoilSpectraExample[1,350:2500]) 
+#' plot(eSpectraExample[1,350:2500]) 
 #' 
 #' #Savitsky-Golay filter
-#' SGolay_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'S-Golay')
+#' SGolay_Spectra <- filter_eSpectra(eSpectraExample,type = 'S-Golay')
 #' 
 #' plot(SGolay_Spectra[1,350:2500])
 #' 
 #' 
 #' #Wavelet smoothing
 #' 
-#' plot(SoilSpectraExample[1,350:2397],ylim=c(0,3))
+#' plot(eSpectraExample[1,350:2397],ylim=c(0,3))
 #' 
-#' points(filter_SoilSpectra(SoilSpectraExample[1,350:2397],type = 'Wavelet',res=9),col='red')
-#' points(filter_SoilSpectra(SoilSpectraExample[1,350:2397],type = 'Wavelet',res=8),col='blue')
-#' points(filter_SoilSpectra(SoilSpectraExample[1,350:2397],type = 'Wavelet',res=7),col='green')
+#' points(filter_eSpectra(eSpectraExample[1,350:2397],type = 'Wavelet',res=9),col='red')
+#' points(filter_eSpectra(eSpectraExample[1,350:2397],type = 'Wavelet',res=8),col='blue')
+#' points(filter_eSpectra(eSpectraExample[1,350:2397],type = 'Wavelet',res=7),col='green')
 #' 
 #' #Multiplicative scatter correction
 #' 
-#' MSC_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'MSC')
+#' MSC_Spectra <- filter_eSpectra(eSpectraExample,type = 'MSC')
 #' 
 #' plot(MSC_Spectra[1,350:2500])
 #'  
 #' #Standard Normal Variate transform
 #' 
-#' SNV_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'SNV')
+#' SNV_Spectra <- filter_eSpectra(eSpectraExample,type = 'SNV')
 #' 
 #' plot(SNV_Spectra[1,350:2500])
 #' 
 #' 
 #' #Convex-hull transform
 #' 
-#' CHull_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'C-hull')
+#' CHull_Spectra <- filter_eSpectra(eSpectraExample,type = 'C-hull')
 #' 
 #' plot(CHull_Spectra[1,350:2500])
 #' 
 #' #CompSpec reduction
 #' 
-#' CompSpec_Spectra <- filter_SoilSpectra(SoilSpectraExample,type = 'CompSpec',window=9)
+#' CompSpec_Spectra <- filter_eSpectra(eSpectraExample,type = 'CompSpec',window=9)
 #' 
-#' plot(SoilSpectraExample[1,350:2500])
+#' plot(eSpectraExample[1,350:2500])
 #' points(CompSpec_Spectra[1,350:2500],col='red',lwd=2)
 #' }
-#' @exportMethod  filter_SoilSpectra
+#' @exportMethod  filter_eSpectra
 
 
-setGeneric("filter_SoilSpectra",
-           function(SoilSpectra,type,n=11, p=2, m=0,window=NULL,res=NULL,X = NULL,wav = NULL,splice = NULL,interpol.bands = NULL)
+setGeneric("filter_eSpectra",
+           function(eSpectra,type,n=11, p=2, m=0,window=NULL,res=NULL,X = NULL,wav = NULL,splice = NULL,interpol.bands = NULL)
              {
-             standardGeneric('filter_SoilSpectra')
+             standardGeneric('filter_eSpectra')
              }
            )
 
-setMethod(f = 'filter_SoilSpectra',
-          signature = 'SoilSpectra',
-          definition= function(SoilSpectra,type=NULL,n=11, p=2, m=0,window=1,res=NULL,X,wav,splice=c(1000,1830),interpol.bands=10)
+setMethod(f = 'filter_eSpectra',
+          signature = 'eSpectra',
+          definition= function(eSpectra,type=NULL,n=11, p=2, m=0,window=1,res=NULL,X,wav,splice=c(1000,1830),interpol.bands=10)
             {
-            spectra <- SoilSpectra@Spectra
-            specType <- SoilSpectra@Type
+            spectra <- eSpectra@Spectra
+            specType <- eSpectra@Type
             
             if(length(type)>1){
               for(treatment in type){
-                SoilSpectra <- filter_SoilSpectra(SoilSpectra,treatment,n=n, p=p, m=m,window=window,X = X,wav = wav,splice = splice,interpol.bands = interpol.bands)
+                eSpectra <- filter_eSpectra(eSpectra,treatment,n=n, p=p, m=m,window=window,X = X,wav = wav,splice = splice,interpol.bands = interpol.bands)
                 }
-              return(SoilSpectra)
+              return(eSpectra)
               }else{
                 
                 if (type =='S-Golay')
@@ -104,10 +104,10 @@ setMethod(f = 'filter_SoilSpectra',
           sg <- matrix(sgolayfilt(spectra, n = n, p = p, m = m),ncol = ncol(spectra))
         }  
         
-        SoilSpectra@Spectra <- sg
+        eSpectra@Spectra <- sg
         treatmentDetails <- paste0('S-Golay ','n=',n,'p=',p,'m=',m)
-        SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
-        return(SoilSpectra)
+        eSpectra@Treatments <- c(eSpectra@Treatments,treatmentDetails)
+        return(eSpectra)
       }
                 
                 if(type=='MSC') 
@@ -123,19 +123,19 @@ setMethod(f = 'filter_SoilSpectra',
           mscMat[i, ] <- t(as.matrix((spectra[i, ] - specCE[1, 1])/specCE[1,2]))
         }
         
-        SoilSpectra@Spectra <- mscMat
+        eSpectra@Spectra <- mscMat
         treatmentDetails <- 'MSC'
-        SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
-        return(SoilSpectra)
+        eSpectra@Treatments <- c(eSpectra@Treatments,treatmentDetails)
+        return(eSpectra)
       }
                 
                 if(type=='SNV')
                   {
         snvMat<-(spectra - rowMeans(spectra))/apply(spectra,1,sd)
-        SoilSpectra@Spectra <- snvMat
+        eSpectra@Spectra <- snvMat
         treatmentDetails <- 'SNV'
-        SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
-        return(SoilSpectra)
+        eSpectra@Treatments <- c(eSpectra@Treatments,treatmentDetails)
+        return(eSpectra)
       }
                 
                 if(type=='Wavelet')
@@ -159,13 +159,13 @@ setMethod(f = 'filter_SoilSpectra',
           
         }
         
-        SoilSpectra@Spectra <- wave_spectra
+        eSpectra@Spectra <- wave_spectra
         treatmentDetails <- paste0('Wavelet',' res=', res)
-        SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
-        SoilSpectra@Bands <- as.character(seq((as.numeric(SoilSpectra@Bands[1]) + 0.5 * (length(SoilSpectra@Bands)/(2^res))), as.numeric(rev(SoilSpectra@Bands)[1]), by = length(SoilSpectra@Bands)/(2^res)))
+        eSpectra@Treatments <- c(eSpectra@Treatments,treatmentDetails)
+        eSpectra@Bands <- as.character(seq((as.numeric(eSpectra@Bands[1]) + 0.5 * (length(eSpectra@Bands)/(2^res))), as.numeric(rev(eSpectra@Bands)[1]), by = length(eSpectra@Bands)/(2^res)))
         
         
-        return(SoilSpectra)
+        return(eSpectra)
       }
                 
                 if(type=='C-hull')
@@ -219,22 +219,22 @@ setMethod(f = 'filter_SoilSpectra',
           ## calculate linear approximation between hull points
           linear_approx <- approx(data1[c_hull,], xout = interval, method = 'linear', ties = 'mean')
           ## calculate the deviation from the convex hull
-          if (SoilSpectra@Type=='Absorbance')
+          if (eSpectra@Type=='Absorbance')
           {hull_spectra[i,] <- 1- (( linear_approx[[2]] - tempSpect )/linear_approx[[2]])}
-          if (SoilSpectra@Type=='Reflectance')
+          if (eSpectra@Type=='Reflectance')
           {hull_spectra[i,] <- (( linear_approx[[2]] - tempSpect )/linear_approx[[2]])}
         }
         
-        SoilSpectra@Spectra <- hull_spectra
+        eSpectra@Spectra <- hull_spectra
         treatmentDetails <- 'C-hull'
-        SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
-        return(SoilSpectra)
+        eSpectra@Treatments <- c(eSpectra@Treatments,treatmentDetails)
+        return(eSpectra)
       }
                 
                 if(type=='CompSpec')
                   {
         
-          if(ncol(spectra)%%window != 0){stop("Error: Pick a more compatable window size, the window needs to be a divisor of ",length(SoilSpectra@Bands), "(total number of bands)")
+          if(ncol(spectra)%%window != 0){stop("Error: Pick a more compatable window size, the window needs to be a divisor of ",length(eSpectra@Bands), "(total number of bands)")
             
             } else {
               compMat <- matrix(NA, ncol = (ncol(spectra))/window, nrow = nrow(spectra))
@@ -244,38 +244,38 @@ setMethod(f = 'filter_SoilSpectra',
                 if(nrow(compMat)==1) compMat[, i] <- mean(spectra[, cc:(cc + (window - 1))])
                 else compMat[, i] <- rowMeans(spectra[, cc:(cc + (window - 1))])
                 cc <- cc + window}
-                colab = seq(as.numeric(SoilSpectra@Bands[1]),as.numeric(tail(SoilSpectra@Bands)[6]), by = window)
+                colab = seq(as.numeric(eSpectra@Bands[1]),as.numeric(tail(eSpectra@Bands)[6]), by = window)
                 }
           
-          SoilSpectra@Spectra <- compMat
-          SoilSpectra@Bands <- as.character(colab)
+          eSpectra@Spectra <- compMat
+          eSpectra@Bands <- as.character(colab)
           treatmentDetails <- paste0('CompSpec',' window=',window)
-          SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
-          return(SoilSpectra)
+          eSpectra@Treatments <- c(eSpectra@Treatments,treatmentDetails)
+          return(eSpectra)
                 }
                 
                 if(type=='toAbsorbance')
                 {
-                  if(SoilSpectra@Type=='Reflectance'){
-                    SoilSpectra@Spectra <- log(1/SoilSpectra@Spectra)
-                    SoilSpectra@Type <- 'Absorbance'
-                    return(SoilSpectra)
+                  if(eSpectra@Type=='Reflectance'){
+                    eSpectra@Spectra <- log(1/eSpectra@Spectra)
+                    eSpectra@Type <- 'Absorbance'
+                    return(eSpectra)
 
                   }else{
-                    return(SoilSpectra)  
+                    return(eSpectra)  
 
                     
                 }}
                 
                 if(type=='toReflectance')
                 {
-                  if(SoilSpectra@Type=='Absorbance'){
-                    SoilSpectra@Spectra <- log(1/SoilSpectra@Spectra)
-                    SoilSpectra@Type <- 'Reflectance'
-                    return(SoilSpectra)
+                  if(eSpectra@Type=='Absorbance'){
+                    eSpectra@Spectra <- log(1/eSpectra@Spectra)
+                    eSpectra@Type <- 'Reflectance'
+                    return(eSpectra)
 
                   }else{
-                    return(SoilSpectra)  
+                    return(eSpectra)  
 
                   }
                   
@@ -284,10 +284,10 @@ setMethod(f = 'filter_SoilSpectra',
                 if(type=='Splice')
                 {
                   
-                  SoilSpectra@Spectra <- spliceCorrection(X = SoilSpectra@Spectra,wav = as.numeric(SoilSpectra@Bands),splice = splice,interpol.bands = interpol.bands)
+                  eSpectra@Spectra <- spliceCorrection(X = eSpectra@Spectra,wav = as.numeric(eSpectra@Bands),splice = splice,interpol.bands = interpol.bands)
                   treatmentDetails <- 'SpliceCorrection'
-                  SoilSpectra@Treatments <- c(SoilSpectra@Treatments,treatmentDetails)
-                  return(SoilSpectra)
+                  eSpectra@Treatments <- c(eSpectra@Treatments,treatmentDetails)
+                  return(eSpectra)
                 }
                 
               }

@@ -1,8 +1,8 @@
-#' SoilSpectra subset method
+#' eSpectra subset method
 
 
 setMethod(f = "[", 
-          signature=c("SoilSpectra"),
+          signature=c("eSpectra"),
           definition=function(x,i,j,...,drop=T)
           {
             if(missing(i)) i <- as.character(x@ID)

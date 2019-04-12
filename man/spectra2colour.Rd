@@ -2,23 +2,23 @@
 % Please edit documentation in R/spectra2colour.R
 \name{spectra2colour}
 \alias{spectra2colour}
-\title{Method that extracts RGB and Munsell colour from \code{\link{SoilSpectra}} objects.}
+\title{Method that extracts RGB and Munsell colour from \code{\link{eSpectra}} objects.}
 \usage{
-spectra2colour(SoilSpectra, ...)
+spectra2colour(eSpectra, ...)
 }
 \arguments{
-\item{SoilSpectra}{A \code{\link{SoilSpectra}} object.}
+\item{eSpectra}{A \code{\link{eSpectra}} object.}
 }
 \description{
 Converts spectra reflectance into RGB and Munsell colours
 }
 \examples{
 \dontrun{
-data("SoilSpectraExample")
+data("eSpectraExample")
 
-spectra2colour(SoilSpectraExample)
+spectra2colour(eSpectraExample)
 
-spectra2colour(SoilSpectraExample[23]) 
+spectra2colour(eSpectraExample[23]) 
 }
 }
 \author{
