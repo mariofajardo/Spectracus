@@ -26,7 +26,8 @@ Imports:
     ggplot2,
     wavethresh,
     prospectr,
-    splancs
+    splancs,
+    rlang
 Suggests: 
     testthat,
     knitr,
