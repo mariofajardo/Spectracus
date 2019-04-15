@@ -26,16 +26,17 @@
 #' @author Mario Fajardo, Brendan Malone, Budiman Minasny, Michael Nelson, Sebastian Campbell.
 #' @examples 
 #' \dontrun{
+## Not run: 
 #' data("eSpectraExample")
 #' 
 #' 
 #' plot(eSpectraExample[1,as.character(350:2500)]) 
-#' 
+
 #' #Savitsky-Golay filter
 #' SGolay_Spectra <- filter_eSpectra(eSpectraExample,type = 'S-Golay')
 #' 
+
 #' plot(SGolay_Spectra[1,as.character(350:2500)])
-#' 
 #' 
 #' #Wavelet smoothing
 #' 
@@ -64,6 +65,7 @@
 #' 
 #' plot(CHull_Spectra[1,as.character(350:2500)])
 #' 
+#' 
 #' #CompSpec reduction
 #' 
 #' CompSpec_Spectra <- filter_eSpectra(eSpectraExample,type = 'CompSpec',window=9)
@@ -71,6 +73,7 @@
 #' plot(eSpectraExample[1,as.character(350:2500)])
 #' points(CompSpec_Spectra[1,as.character(350:2500)],col='red',lwd=2)
 #' }
+#' 
 #' @exportMethod  filter_eSpectra
 
 
