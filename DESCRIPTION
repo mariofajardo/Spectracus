@@ -27,7 +27,6 @@ Imports:
     wavethresh,
     prospectr,
     splancs
-    
 Suggests: 
     testthat,
     knitr,
