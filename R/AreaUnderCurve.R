@@ -15,6 +15,7 @@
 #' @importFrom plyr splat
 #' @importFrom plyr llply
 #' @importFrom munsell rgb2mnsl
+#' @importFrom splancs areapl
 #' 
 #' 
 #' @author Mario Fajardo and Brendan Malone
@@ -35,7 +36,7 @@
 #' \dontrun{
 #' data("eSpectraExample")
 #' #Select a specific area
-#' SelectedArea <- eSpectraExample[122:123,1950:2220]
+#' SelectedArea <- eSpectraExample[122:123,as.character(1950:2220)]
 #' 
 #' 
 #' #Run the continuum fitting function for Area Under the Curve
@@ -66,7 +67,7 @@
 #' 
 #' 
 #' #Run the continuum fitting function for Area Over the curve
-#' SelectedArea <- eSpectraExample[122:123,2180:2230]
+#' SelectedArea <- eSpectraExample[122:123,as.character(2180:2230)]
 #' 
 #' spec.CR<- AreaUnderCurve(SelectedArea,AUC=F)
 #' 

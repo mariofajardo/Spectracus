@@ -12,6 +12,8 @@ apply_SpectralTreatments(eSpectra_A, eSpectra_B)
 \item{eSpectra_B}{}
 }
 \description{
+#' (NOT FULLY IMPLEMENTED) 
+ 
 This method applies spectral pretreatments from a class \code{\link{eSpectra}} object 'A' to another \code{\link{eSpectra}} object 'B'
 }
 \examples{

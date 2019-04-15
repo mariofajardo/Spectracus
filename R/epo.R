@@ -1,5 +1,7 @@
 #' Perform Empirical Parameter Orthogonalisation
 #' 
+#' (NOT YET IMPLEMENTED) 
+#'  
 #' This function takes in a difference matrix (the difference between wet 
 #' and dry soil spectra) and returns an EPO-transformed projection matrix.
 #' 

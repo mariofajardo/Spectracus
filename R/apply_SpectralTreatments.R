@@ -1,5 +1,7 @@
 #' Filtering methods for eSpectra objects
 #' 
+#' #' (NOT FULLY IMPLEMENTED) 
+#'  
 #' This method applies spectral pretreatments from a class \code{\link{eSpectra}} object 'A' to another \code{\link{eSpectra}} object 'B'
 #' @rdname  apply_SpectralTreatments
 #' @param eSpectra_A Object of class \code{\link{eSpectra}}.

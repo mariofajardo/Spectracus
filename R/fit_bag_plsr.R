@@ -1,5 +1,8 @@
 #' Fit bootstrap aggregated PLSR
 #' 
+#' #' (NOT YET IMPLEMENTED) 
+#'  
+#' 
 #' @author Budiman Minasny
 #' 
 #' @param soilv soil variables of interest

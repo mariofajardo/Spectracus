@@ -22,7 +22,7 @@ A list containing:
 \item{pred.std}{standard deviation of predictions}
 }
 \description{
-Predict using a fitted bootstrap aggregated PLSR model
+#' (NOT YET IMPLEMENTED)
 }
 \seealso{
 \code{\link{fit_bag_plsr}}

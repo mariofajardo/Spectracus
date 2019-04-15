@@ -1,5 +1,8 @@
 #' Predict using a fitted bootstrap aggregated PLSR model
 #' 
+#' #' (NOT YET IMPLEMENTED) 
+#'  
+#' 
 #' @author Budiman Minasny
 #' 
 #' @param model.bpls bagged PLSR model

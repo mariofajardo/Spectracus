@@ -28,7 +28,7 @@ goof(observed, predicted, coefficient = c("R2", "concordance", "MSE", "RMSE",
 \item{...}{arguments passed to \code{\link{plot}}}
 }
 \description{
-Goodness of fit
+#' (NOT YET IMPLEMENTED)
 }
 \examples{
 observed <- c(1,5,6,8,9,20)

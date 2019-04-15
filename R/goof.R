@@ -1,5 +1,8 @@
 #' Goodness of fit 
 #' 
+#' #' (NOT YET IMPLEMENTED) 
+#'  
+#' 
 #' @author Brendan Malone
 #' 
 #' @param observed numeric vector of observed values

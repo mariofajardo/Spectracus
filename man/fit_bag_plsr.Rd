@@ -22,7 +22,7 @@ A list containing:
 \item{cal_rmse}{mean calibration RMSE}
 }
 \description{
-Fit bootstrap aggregated PLSR
+#' (NOT YET IMPLEMENTED)
 }
 \seealso{
 \code{\link{predict_bag_plsr}}

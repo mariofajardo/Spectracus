@@ -2,7 +2,7 @@
 % Please edit documentation in R/munsell_treemap.R
 \name{munsell_treemap}
 \alias{munsell_treemap}
-\title{Create Munsell treemap}
+\title{Create Munsell treemap (NOT YET IMPLEMENTED)}
 \usage{
 munsell_treemap(spectra, wavelengths, coltext = TRUE, numtext = FALSE,
   otherArgs = NULL, textrange = c(3, 10))
