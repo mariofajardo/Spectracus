@@ -40,12 +40,10 @@ data("eSpectraExample")
 
 
 plot(eSpectraExample[1,as.character(350:2500)]) 
-
 #Savitsky-Golay filter
 SGolay_Spectra <- filter_eSpectra(eSpectraExample,type = 'S-Golay')
 
 plot(SGolay_Spectra[1,as.character(350:2500)])
-
 
 #Wavelet smoothing
 
@@ -74,6 +72,7 @@ CHull_Spectra <- filter_eSpectra(eSpectraExample,type = 'C-hull')
 
 plot(CHull_Spectra[1,as.character(350:2500)])
 
+
 #CompSpec reduction
 
 CompSpec_Spectra <- filter_eSpectra(eSpectraExample,type = 'CompSpec',window=9)
@@ -81,6 +80,7 @@ CompSpec_Spectra <- filter_eSpectra(eSpectraExample,type = 'CompSpec',window=9)
 plot(eSpectraExample[1,as.character(350:2500)])
 points(CompSpec_Spectra[1,as.character(350:2500)],col='red',lwd=2)
 }
+
 }
 \references{
 Savitzky, Abraham and Golay, M. J. E. (1964) Smoothing and Differentiation of Data by Simplified Least Squares Procedures, Analytical Chemistry, 36, pp. 1627-1629.
