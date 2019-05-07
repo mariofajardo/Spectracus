@@ -19,6 +19,17 @@
 #' @importFrom Cubist cubist
 #' @importFrom clhs clhs
 #' 
+#' @examples 
+#' \dontrun{
+#' data("Almonds")
+#'
+#' Bag_Sample <- bag_eSpectra(Almonds,val_split = 0.25,mode = 'random',iters = 10)
+#' 
+#' Models <- boot_models(eSpectra = Almonds,bootSample = Bag_Sample,target = 'OilContent')
+#' 
+#' Models
+#' }
+#' 
 #' @export boot_models
 
 boot_models <- function(eSpectra=eSpectra,bootSample=NULL,target=NULL,...){

@@ -10,8 +10,19 @@
 #' @return A \code{\link{ggplot}} object
 #' 
 #' 
-#' @import ggplot2 
+#' @import ggplot2
+#' @examples 
+#' \dontrun{
 #' 
+#' data("Almonds")
+#'
+#' Almonds <- Almonds[complete.cases(Almonds@Properties$OilContent)]
+#' Bag_Sample <- bag_eSpectra(Almonds,val_split = 0.25,mode = 'random',iters = 10)
+#' 
+#' Models <- boot_models(eSpectra = Almonds,bootSample = Bag_Sample,target = 'OilContent')
+#' 
+#' plotPredicions(Models,formula = T,formulaCoords = c(43,50))+theme_bw()
+#' }
 #' @export plotPredicions
 
 plotPredicions <- function(models,formula=FALSE,formulaCoords=NULL){

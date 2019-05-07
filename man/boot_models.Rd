@@ -22,6 +22,18 @@ A list containing:
 \description{
 Train Bootstrapped models
 }
+\examples{
+\dontrun{
+data("Almonds")
+
+Bag_Sample <- bag_eSpectra(Almonds,val_split = 0.25,mode = 'random',iters = 10)
+
+Models <- boot_models(eSpectra = Almonds,bootSample = Bag_Sample,target = 'OilContent')
+
+Models
+}
+
+}
 \author{
 Mario Fajardo
 }

@@ -25,6 +25,17 @@ A list containing:
 \description{
 Split eSpectra object into a bootstrapped sample
 }
+\examples{
+\dontrun{
+data("eSpectraExample")
+
+Bag_Sample <- bag_eSpectra(eSpectra=eSpectraExample,val_split = 0.25,mode = 'random',iters = 10)
+
+Bag_Sample
+
+}
+
+}
 \author{
 Mario Fajardo
 }

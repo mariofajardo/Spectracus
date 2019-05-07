@@ -18,6 +18,17 @@
 #' @importFrom stats predict
 #' @importFrom clhs clhs
 #' 
+#' 
+#' @examples 
+#' \dontrun{
+#' data("eSpectraExample")
+#'
+#' Bag_Sample <- bag_eSpectra(eSpectra=eSpectraExample,val_split = 0.25,mode = 'random',iters = 10)
+#' 
+#' Bag_Sample
+#' 
+#' }
+#' 
 #' @export bag_eSpectra
 
 bag_eSpectra <- function(eSpectra= NULL,val_split=NULL,mode='random',iters=50,lhcIter=15000,...){
