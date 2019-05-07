@@ -27,7 +27,9 @@ Imports:
     wavethresh,
     prospectr,
     splancs,
-    rlang
+    rlang,
+    clhs,
+    pbapply
 Suggests: 
     testthat,
     knitr,
@@ -38,6 +40,9 @@ Collate:
     'ZZZ.R'
     'AreaUnderCurve.R'
     'eSpectra.R'
+    'bag_eSpectra.R'
+    'boot_models.R'
+    'plotPredicions.R'
     'apply_SpectralTreatments.R'
     'epo.R'
     'filter_eSpectra.R'
