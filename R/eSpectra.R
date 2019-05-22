@@ -9,10 +9,11 @@
 #' @slot RowsAreSpectra  Logical 
 #' @slot Type character vector specifying if the information is expressed in Absorbance, Reflectance, Energy or others (Normalized, EPO, etc.) .  
 #' @slot Treatment Spectral Treatments that had being applied to the spectra
+#' @slot Properties data.frame with Properties associated with each spectrum
 #' @name eSpectra
 #' @rdname eSpectra
 #' @exportClass eSpectra
-#' @author Mario Fajardo, Brendan Malone, Budiman Minasny and Edward Jones.
+#' @author Mario Fajardo.
 
 setClass(Class = 'eSpectra',
          slots=c(Meta='character',

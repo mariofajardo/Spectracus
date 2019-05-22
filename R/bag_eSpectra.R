@@ -10,9 +10,8 @@
 #' @param lhcIter Latin hypercube iterations (if mode = 'lhc').For testing purposes is recommended to lower this value.  
 #' 
 #' @return A list containing:
-#' \item{Train}{Training IDs}
-#' \item{Validation}{Validation IDs}
-#' \item{BootSamples}{Bootstrapped samples if validation='external'}
+#' \item{BootSamples}{Bootstrapped samples IDs}
+#' \item{SamplesIn}{Sample IDs used for training}
 #' 
 #' 
 #' @importFrom stats predict

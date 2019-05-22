@@ -27,8 +27,10 @@ Formal S4 class eSpectra
 \item{\code{Type}}{character vector specifying if the information is expressed in Absorbance, Reflectance, Energy or others (Normalized, EPO, etc.) .}
 
 \item{\code{Treatment}}{Spectral Treatments that had being applied to the spectra}
+
+\item{\code{Properties}}{data.frame with Properties associated with each spectrum}
 }}
 
 \author{
-Mario Fajardo, Brendan Malone, Budiman Minasny and Edward Jones.
+Mario Fajardo.
 }

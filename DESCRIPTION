@@ -1,18 +1,15 @@
 Package: Spectracus
 Type: Package
 Title: Functions for environmental spectral data manipulation
-Version: 0.6
-Date: 2019-04-12
+Version: 0.7
+Date: 2019-05-07
 Authors@R: c(person("Mario", "Fajardo", role = c("aut", "cre"),
     email="mario.fajardo@sydney.edu.au"),
     person("Sebastian", "Campbell", role = c("ctb")),
     person("Brendan", "Malone", role="ctb"),
     person("Budiman", "Minasny", role="ctb"),
-    person("Michael", "Nelson", role="ctb"),
-    person("Edward", "Jones", role="ctb"),
-    person("José", "Padarian", role="ctb"))
-Authors: Sebastian Campbell, Brendan Malone, Budiman Minasny, Michael Nelson,
-    Mario Fajardo
+    person("Michael", "Nelson", role="ctb"))
+Authors: Mario Fajardo,Sebastian Campbell, Brendan Malone, Budiman Minasny, Michael Nelson
 Maintainer: Mario Fajardo <mario.fajardo@sydney.edu.au>
 Description: A selection of most common spectral data manipulation functions
 License: GPL-3

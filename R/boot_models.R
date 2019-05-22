@@ -66,7 +66,8 @@ boot_models <- function(eSpectra=eSpectra,bootSample=NULL,target=NULL,...){
     
   }
   
-  return(list(predicted=predictions,
+  return(list(Models=MODELS,
+              predicted=predictions,
               observed=obs,
               acc=goof(obs,preds)))
 }

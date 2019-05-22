@@ -18,9 +18,8 @@ bag_eSpectra(eSpectra = NULL, val_split = NULL, mode = "random",
 }
 \value{
 A list containing:
-\item{Train}{Training IDs}
-\item{Validation}{Validation IDs}
-\item{BootSamples}{Bootstrapped samples if validation='external'}
+\item{BootSamples}{Bootstrapped samples IDs}
+\item{SamplesIn}{Sample IDs used for training}
 }
 \description{
 Split eSpectra object into a bootstrapped sample
