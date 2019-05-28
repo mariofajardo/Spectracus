@@ -53,4 +53,5 @@ Collate:
     'show.R'
     'spectra2colour.R'
     'subset.R'
+    'tidy.R'
 Encoding: UTF-8

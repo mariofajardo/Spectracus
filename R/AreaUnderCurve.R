@@ -104,8 +104,8 @@ setGeneric("AreaUnderCurve",
            }
 )
 
-setMethod(f = 'AreaUnderCurve',
-          signature = 'eSpectra',
+setMethod(f = "AreaUnderCurve",
+          signature = "eSpectra",
           definition= function(eSpectra,AUC=TRUE,...)
             {
             
