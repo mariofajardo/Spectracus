@@ -4,7 +4,8 @@
 \alias{boot_models}
 \title{Train Bootstrapped models}
 \usage{
-boot_models(eSpectra = eSpectra, bootSample = NULL, target = NULL, ...)
+boot_models(eSpectra = eSpectra, bootSample = NULL, target = NULL,
+  ...)
 }
 \arguments{
 \item{eSpectra}{A \code{\link{eSpectra}} object.}

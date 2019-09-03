@@ -4,8 +4,8 @@
 \alias{filter_eSpectra}
 \title{Filtering methods for eSpectra objects}
 \usage{
-filter_eSpectra(eSpectra, type, n = 11, p = 2, m = 0, window = NULL,
-  res = NULL, X = NULL, wav = NULL, splice = NULL,
+filter_eSpectra(eSpectra, type, n = 11, p = 2, m = 0,
+  window = NULL, res = NULL, X = NULL, wav = NULL, splice = NULL,
   interpol.bands = NULL)
 }
 \arguments{

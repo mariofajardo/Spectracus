@@ -4,8 +4,8 @@
 \alias{goof}
 \title{Goodness of fit}
 \usage{
-goof(observed, predicted, coefficient = c("R2", "concordance", "MSE", "RMSE",
-  "bias", "MSEc", "RMSEc", "RPD", "RPIQ"), plot = TRUE, ...)
+goof(observed, predicted, coefficient = c("R2", "concordance", "MSE",
+  "RMSE", "bias", "MSEc", "RMSEc", "RPD", "RPIQ"), plot = TRUE, ...)
 }
 \arguments{
 \item{observed}{numeric vector of observed values}
