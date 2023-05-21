@@ -17,7 +17,7 @@ Maintainer: Mario Fajardo <mario.fajardo@sydney.edu.au>
 Description: A selection of most common spectral data manipulation functions
 License: GPL-3
 URL: https://github.com/mariofajardop/Spectracus
-Require: R (>= 3.2.2)
+Require: R (>= 3.3.0)
 Imports:
     plyr,
     signal,
@@ -25,6 +25,9 @@ Imports:
     treemap,
     ggplot2,
     wavethresh,
+    prospectr,
+    splancs,
+    rlang
 Suggests: 
     testthat,
     knitr,
